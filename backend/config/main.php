@@ -20,6 +20,9 @@ return [
                 //'*',
             ]
         ],
+        'menu' => [
+          'class' => 'nestedmenu\NestedMenu',
+        ],
     ],
     'components' => [
         /*'user' => [

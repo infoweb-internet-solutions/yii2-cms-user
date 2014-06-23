@@ -16,11 +16,13 @@
 	"require": {
 		"php": ">=5.4.0",
 		"yiisoft/yii2": "*",
+        "kartik-v/yii2-helpers": "dev-master",
 		"yiisoft/yii2-bootstrap": "*",
 		"yiisoft/yii2-swiftmailer": "*",
         "dektrium/yii2-user": "*",
-        "yiisoft/yii2-jui": "*",
-        "mdmsoft/yii2-admin": "*"
+        "mdmsoft/yii2-admin": "*",
+        "drmabuse/nestedmenu": "dev-master",
+        "creocoder/yii2-nested-set-behavior": "*"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",
