@@ -16,7 +16,8 @@ return [
             'class' => 'mdm\admin\Module',
             'allowActions' => [
                 'admin/*', // add or remove allowed actions to this list
-                '*',
+                'debug/*',
+                //'*',
             ]
         ],
     ],
