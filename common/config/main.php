@@ -11,16 +11,13 @@ return [
         ],
         'i18n' => [
             'translations' => [
-                'app*' => [
+                '*' => [
                     'class' => 'yii\i18n\DbMessageSource',
-                    //'basePath' => '@app/messages',
-                    //'sourceLanguage' => 'en',
-                    'fileMap' => [
-                        'app' => 'app.php',
-                        'app/error' => 'error.php',
-                    ],
                 ],
             ],
+        ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
         ],
     ],
     'modules' => [
