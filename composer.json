@@ -22,7 +22,9 @@
         "dektrium/yii2-user": "*",
         "mdmsoft/yii2-admin": "*",
         "drmabuse/nestedmenu": "dev-master",
-        "creocoder/yii2-nested-set-behavior": "*"
+        "creocoder/yii2-nested-set-behavior": "*",
+        "kartik-v/yii2-widgets": "dev-master",
+        "2amigos/yii2-translateable-behavior" : "*"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",

@@ -4,8 +4,51 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2aaa7f770b83e15be0489fe102358fa4",
+    "hash": "cddbfb1ad0a61baf86a317b4a4c36639",
     "packages": [
+        {
+            "name": "2amigos/yii2-translateable-behavior",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-translateable-behavior.git",
+                "reference": "0ce80668dd7b471b1050f310cca5aa3a8b728879"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-translateable-behavior/zipball/0ce80668dd7b471b1050f310cca5aa3a8b728879",
+                "reference": "0ce80668dd7b471b1050f310cca5aa3a8b728879",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\translateable\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "ramirez.cobos@gmail.com",
+                    "homepage": "http://2amigos.us"
+                }
+            ],
+            "description": "ActiveRecord attributes translations for Yii2.",
+            "keywords": [
+                "Behavior",
+                "extension",
+                "translation",
+                "yii"
+            ],
+            "time": "2014-04-25 17:32:25"
+        },
         {
             "name": "cebe/markdown",
             "version": "0.9.x-dev",
@@ -256,6 +299,184 @@
             "time": "2013-11-30 08:25:19"
         },
         {
+            "name": "kartik-v/bootstrap-fileinput",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
+                "reference": "6d477b7966aa94202a9d059076791bb47d8973bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/6d477b7966aa94202a9d059076791bb47d8973bf",
+                "reference": "6d477b7966aa94202a9d059076791bb47d8973bf",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An enhanced HTML 5 file input for Bootstrap 3.x with file preview, multiple selection, and more features.",
+            "homepage": "https://github.com/kartik-v/bootstrap-fileinput",
+            "keywords": [
+                "bootstrap",
+                "file",
+                "image",
+                "input",
+                "jquery",
+                "preview",
+                "upload"
+            ],
+            "time": "2014-06-15 12:47:10"
+        },
+        {
+            "name": "kartik-v/bootstrap-star-rating",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
+                "reference": "592dfb6d5fa6fe2303094c3b30410b516655d456"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/592dfb6d5fa6fe2303094c3b30410b516655d456",
+                "reference": "592dfb6d5fa6fe2303094c3b30410b516655d456",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A simple yet powerful JQuery star rating plugin for Bootstrap.",
+            "homepage": "https://github.com/kartik-v/bootstrap-star-rating",
+            "keywords": [
+                "Rating",
+                "bootstrap",
+                "jquery",
+                "star"
+            ],
+            "time": "2014-06-18 11:06:34"
+        },
+        {
+            "name": "kartik-v/dependent-dropdown",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/dependent-dropdown.git",
+                "reference": "80cf23ba6a4b9a08d829f6d4abd359c06ef17f95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/dependent-dropdown/zipball/80cf23ba6a4b9a08d829f6d4abd359c06ef17f95",
+                "reference": "80cf23ba6a4b9a08d829f6d4abd359c06ef17f95",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A multi level dependent dropdown JQuery plugin that allows nested dependencies.",
+            "homepage": "https://github.com/kartik-v/dependent-dropdown",
+            "keywords": [
+                "dependent",
+                "dropdown",
+                "jquery",
+                "option",
+                "select"
+            ],
+            "time": "2014-05-12 11:40:04"
+        },
+        {
+            "name": "kartik-v/yii2-field-range",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-field-range.git",
+                "reference": "a857dde298315e92bf1ba81d8f32e2bbe7609936"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-field-range/zipball/a857dde298315e92bf1ba81d8f32e2bbe7609936",
+                "reference": "a857dde298315e92bf1ba81d8f32e2bbe7609936",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-widgets": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Easily manage Yii 2 ActiveField ranges (from/to) with Bootstrap 3 addons markup and more",
+            "homepage": "https://github.com/kartik-v/yii2-field-range",
+            "keywords": [
+                "addon",
+                "bootstrap",
+                "bootstrap 3",
+                "date",
+                "extension",
+                "field-range",
+                "from",
+                "range",
+                "to",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-06-01 20:09:56"
+        },
+        {
             "name": "kartik-v/yii2-helpers",
             "version": "dev-master",
             "source": {
@@ -300,6 +521,54 @@
                 "yii2"
             ],
             "time": "2014-06-19 03:30:16"
+        },
+        {
+            "name": "kartik-v/yii2-widgets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widgets.git",
+                "reference": "8ae52b50bddc6558d8b49ff5a5a8bcee723dc558"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/8ae52b50bddc6558d8b49ff5a5a8bcee723dc558",
+                "reference": "8ae52b50bddc6558d8b49ff5a5a8bcee723dc558",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/bootstrap-fileinput": "*",
+                "kartik-v/bootstrap-star-rating": "*",
+                "kartik-v/dependent-dropdown": "*",
+                "kartik-v/yii2-field-range": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "kartik\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD 3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Collection of useful widgets for Yii Framework 2.0 extending functionalities for Bootstrap",
+            "homepage": "https://github.com/kartik-v/yii2-widgets",
+            "keywords": [
+                "extension",
+                "form",
+                "widget",
+                "yii2"
+            ],
+            "time": "2014-06-22 12:51:00"
         },
         {
             "name": "mdmsoft/yii2-admin",
@@ -503,12 +772,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "0958c576fb3e0a937ebdbb2963a268de911f5b1e"
+                "reference": "9a404c87b4301d95fb9e21eb657e4048295e3266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/0958c576fb3e0a937ebdbb2963a268de911f5b1e",
-                "reference": "0958c576fb3e0a937ebdbb2963a268de911f5b1e",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/9a404c87b4301d95fb9e21eb657e4048295e3266",
+                "reference": "9a404c87b4301d95fb9e21eb657e4048295e3266",
                 "shasum": ""
             },
             "require": {
@@ -573,7 +842,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-06-23 11:46:35"
+            "time": "2014-06-24 08:21:55"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -625,12 +894,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "7b1d29feef344ed6034223921f1dc7d6deeb05e5"
+                "reference": "4c84a919caaf6cfe8aff5c13f6d174eee2f36f21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/7b1d29feef344ed6034223921f1dc7d6deeb05e5",
-                "reference": "7b1d29feef344ed6034223921f1dc7d6deeb05e5",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/4c84a919caaf6cfe8aff5c13f6d174eee2f36f21",
+                "reference": "4c84a919caaf6cfe8aff5c13f6d174eee2f36f21",
                 "shasum": ""
             },
             "require": {
@@ -660,7 +929,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2014-06-21 06:36:24"
+            "time": "2014-06-23 22:43:42"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -879,12 +1148,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "2e128a08bdd0f5fd81e91c410831c7539efbd750"
+                "reference": "534259f9f33ba37e3b449240e9c1c71d36f49661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/2e128a08bdd0f5fd81e91c410831c7539efbd750",
-                "reference": "2e128a08bdd0f5fd81e91c410831c7539efbd750",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/534259f9f33ba37e3b449240e9c1c71d36f49661",
+                "reference": "534259f9f33ba37e3b449240e9c1c71d36f49661",
                 "shasum": ""
             },
             "require": {
@@ -915,7 +1184,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2014-06-22 10:28:25"
+            "time": "2014-06-24 08:45:46"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -923,12 +1192,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "76893847d87ad7fb6c4aaa3f086a92df493a7dd6"
+                "reference": "05da36f517494b78791487a88852358b9b3cce2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/76893847d87ad7fb6c4aaa3f086a92df493a7dd6",
-                "reference": "76893847d87ad7fb6c4aaa3f086a92df493a7dd6",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/05da36f517494b78791487a88852358b9b3cce2c",
+                "reference": "05da36f517494b78791487a88852358b9b3cce2c",
                 "shasum": ""
             },
             "require": {
@@ -960,7 +1229,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-06-20 13:40:00"
+            "time": "2014-06-23 19:43:14"
         }
     ],
     "aliases": [
@@ -969,7 +1238,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "kartik-v/yii2-helpers": 20,
-        "drmabuse/nestedmenu": 20
+        "drmabuse/nestedmenu": 20,
+        "kartik-v/yii2-widgets": 20
     },
     "platform": {
         "php": ">=5.4.0"
