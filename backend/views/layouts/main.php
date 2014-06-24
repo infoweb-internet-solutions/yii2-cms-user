@@ -38,6 +38,7 @@ AppAsset::register($this);
                 ['label' => 'Gebruikers', 'url' => ['/user/admin/index']],
                 ['label' => 'Rechten', 'url' => ['/admin']],
                 ['label' => 'Gii', 'url' => ['/gii']],
+                ['label' => 'Menu', 'url' => ['/menu/menu/index']],
 
             ];
             if (Yii::$app->user->isGuest) {
