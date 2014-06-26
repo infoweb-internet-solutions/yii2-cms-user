@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cddbfb1ad0a61baf86a317b4a4c36639",
+    "hash": "4c58deab521cd5e2491a3c6aff0a784b",
     "packages": [
         {
             "name": "2amigos/yii2-translateable-behavior",
@@ -157,12 +157,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dektrium/yii2-user.git",
-                "reference": "d36b851c8c913db4572faacedfc21b79f93b8834"
+                "reference": "b0eee8a43b66c05fe04eb817eeeca1846a9fbf04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/d36b851c8c913db4572faacedfc21b79f93b8834",
-                "reference": "d36b851c8c913db4572faacedfc21b79f93b8834",
+                "url": "https://api.github.com/repos/dektrium/yii2-user/zipball/b0eee8a43b66c05fe04eb817eeeca1846a9fbf04",
+                "reference": "b0eee8a43b66c05fe04eb817eeeca1846a9fbf04",
                 "shasum": ""
             },
             "require": {
@@ -204,7 +204,7 @@
                 "yii2",
                 "yii2-user"
             ],
-            "time": "2014-06-17 16:31:28"
+            "time": "2014-06-26 11:43:21"
         },
         {
             "name": "drmabuse/nestedmenu",
@@ -528,12 +528,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widgets.git",
-                "reference": "8ae52b50bddc6558d8b49ff5a5a8bcee723dc558"
+                "reference": "976a3cd9c1404980d71c95b81525aaa69504e2e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/8ae52b50bddc6558d8b49ff5a5a8bcee723dc558",
-                "reference": "8ae52b50bddc6558d8b49ff5a5a8bcee723dc558",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widgets/zipball/976a3cd9c1404980d71c95b81525aaa69504e2e0",
+                "reference": "976a3cd9c1404980d71c95b81525aaa69504e2e0",
                 "shasum": ""
             },
             "require": {
@@ -568,7 +568,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2014-06-22 12:51:00"
+            "time": "2014-06-25 15:50:23"
         },
         {
             "name": "mdmsoft/yii2-admin",
@@ -672,12 +672,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "e98fc373e3ef6e4a884a0142d50c765a9db5bd01"
+                "reference": "4abb0957833c7158563244d1770ab9a5e6966150"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/e98fc373e3ef6e4a884a0142d50c765a9db5bd01",
-                "reference": "e98fc373e3ef6e4a884a0142d50c765a9db5bd01",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/4abb0957833c7158563244d1770ab9a5e6966150",
+                "reference": "4abb0957833c7158563244d1770ab9a5e6966150",
                 "shasum": ""
             },
             "replace": {
@@ -715,7 +715,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-06-20 20:24:14"
+            "time": "2014-06-24 23:07:17"
         },
         {
             "name": "yiisoft/jquery",
@@ -772,12 +772,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "9a404c87b4301d95fb9e21eb657e4048295e3266"
+                "reference": "f2a31883e261e98f9553f84baedc7b1d29a17c06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/9a404c87b4301d95fb9e21eb657e4048295e3266",
-                "reference": "9a404c87b4301d95fb9e21eb657e4048295e3266",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f2a31883e261e98f9553f84baedc7b1d29a17c06",
+                "reference": "f2a31883e261e98f9553f84baedc7b1d29a17c06",
                 "shasum": ""
             },
             "require": {
@@ -790,6 +790,9 @@
                 "yiisoft/jquery-pjax": "*",
                 "yiisoft/yii2-composer": "*"
             },
+            "bin": [
+                "yii"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -842,7 +845,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-06-24 08:21:55"
+            "time": "2014-06-26 10:59:55"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -850,12 +853,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-authclient.git",
-                "reference": "de7d8ea10e5befcd45dcd91ca474577df4804d9c"
+                "reference": "e2ce663df98a8482dd85c088f297fbd2be9b876a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/de7d8ea10e5befcd45dcd91ca474577df4804d9c",
-                "reference": "de7d8ea10e5befcd45dcd91ca474577df4804d9c",
+                "url": "https://api.github.com/repos/yiisoft/yii2-authclient/zipball/e2ce663df98a8482dd85c088f297fbd2be9b876a",
+                "reference": "e2ce663df98a8482dd85c088f297fbd2be9b876a",
                 "shasum": ""
             },
             "require": {
@@ -886,7 +889,7 @@
                 "oauth",
                 "yii2"
             ],
-            "time": "2014-06-20 13:40:00"
+            "time": "2014-06-25 16:24:23"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1148,12 +1151,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "534259f9f33ba37e3b449240e9c1c71d36f49661"
+                "reference": "403ca663c5a123cc8124fd6ac6f3b711f4405990"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/534259f9f33ba37e3b449240e9c1c71d36f49661",
-                "reference": "534259f9f33ba37e3b449240e9c1c71d36f49661",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/403ca663c5a123cc8124fd6ac6f3b711f4405990",
+                "reference": "403ca663c5a123cc8124fd6ac6f3b711f4405990",
                 "shasum": ""
             },
             "require": {
@@ -1184,7 +1187,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2014-06-24 08:45:46"
+            "time": "2014-06-24 22:35:03"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -1192,12 +1195,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "05da36f517494b78791487a88852358b9b3cce2c"
+                "reference": "e1525c1a2b0b6785b40e568c2b3e795f0d6503cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/05da36f517494b78791487a88852358b9b3cce2c",
-                "reference": "05da36f517494b78791487a88852358b9b3cce2c",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/e1525c1a2b0b6785b40e568c2b3e795f0d6503cc",
+                "reference": "e1525c1a2b0b6785b40e568c2b3e795f0d6503cc",
                 "shasum": ""
             },
             "require": {
@@ -1229,18 +1232,16 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-06-23 19:43:14"
+            "time": "2014-06-25 17:03:58"
         }
     ],
     "aliases": [
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "kartik-v/yii2-helpers": 20,
-        "drmabuse/nestedmenu": 20,
-        "kartik-v/yii2-widgets": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": ">=5.4.0"
     },

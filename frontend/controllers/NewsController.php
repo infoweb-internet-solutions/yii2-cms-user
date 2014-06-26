@@ -28,5 +28,5 @@ class NewsController extends Controller
         ]);
     }
 
-  
+
 }

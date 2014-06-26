@@ -16,14 +16,14 @@
 	"require": {
 		"php": ">=5.4.0",
 		"yiisoft/yii2": "*",
-        "kartik-v/yii2-helpers": "dev-master",
+        "kartik-v/yii2-helpers": "*",
 		"yiisoft/yii2-bootstrap": "*",
 		"yiisoft/yii2-swiftmailer": "*",
         "dektrium/yii2-user": "*",
         "mdmsoft/yii2-admin": "*",
-        "drmabuse/nestedmenu": "dev-master",
+        "drmabuse/nestedmenu": "*",
         "creocoder/yii2-nested-set-behavior": "*",
-        "kartik-v/yii2-widgets": "dev-master",
+        "kartik-v/yii2-widgets": "*",
         "2amigos/yii2-translateable-behavior" : "*"
 	},
 	"require-dev": {
