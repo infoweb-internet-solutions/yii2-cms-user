@@ -173,4 +173,9 @@ class SiteController extends Controller
     {
         return $this->render('say', ['message' => $message]);
     }
+
+    public function actionNews()
+    {
+        return $this->render('say', ['message' => $message]);
+    }
 }
