@@ -22,7 +22,7 @@ return [
     ],
     'modules' => [
         'user' => [
-            'class' => 'dektrium\user\Module',
+            'class' => 'infoweb\user\Module',
             'allowUnconfirmedLogin' => true,
             'confirmWithin' => 21600,
             'cost' => 12,
