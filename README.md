@@ -3,6 +3,7 @@
 
 Add this to your config:
 
+```
 'components' => [
   ...
   'view' => [
@@ -25,6 +26,7 @@ Add this to your config:
     ],
   ],
 ],
+```
 
 
 Most of web applications provide a way for users to register, log in or reset their forgotten passwords. Rather than
