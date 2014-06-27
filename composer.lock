@@ -207,41 +207,6 @@
             "time": "2014-06-26 11:43:21"
         },
         {
-            "name": "infoweb/yii2-user",
-            "description": "Flexible user registration and authentication module for Yii2",
-            "keywords": ["yii2", "yii2-user", "user management", "infoweb"],
-            "type": "yii2-extension",
-            "license": "MIT",
-            "support": {
-                "issues": "https://github.com/dektrium/yii2-user/issues?state=open",
-                "forum": "https://gitter.im/dektrium/yii2-user",
-                "source": "https://github.com/dektrium/yii2-user"
-            },
-            "authors": [
-                {
-                    "name": "Ruben Heymans",
-                    "email": "ruben@infoweb.be",
-                    "homepage": "http://www.infoweb.be/"
-                }
-            ],
-            "minimum-stability": "dev",
-            "require": {
-                "yiisoft/yii2": "*",
-                "dektrium/yii2-user": "*"
-            },
-            "require-dev": {
-                "yiisoft/yii2-codeception": "*",
-                "codeception/specify": "*",
-                "codeception/verify": "*",
-                "guzzlehttp/guzzle": "~4.0"
-            },
-            "autoload": {
-                "psr-4": {
-                    "infoweb\\user\\": ""
-                }
-            }
-        },
-        {
             "name": "drmabuse/nestedmenu",
             "version": "dev-master",
             "source": {
@@ -707,12 +672,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "4abb0957833c7158563244d1770ab9a5e6966150"
+                "reference": "1de2f68bdcecd9a1e19548fe9152ead1b5e1bad4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/4abb0957833c7158563244d1770ab9a5e6966150",
-                "reference": "4abb0957833c7158563244d1770ab9a5e6966150",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/1de2f68bdcecd9a1e19548fe9152ead1b5e1bad4",
+                "reference": "1de2f68bdcecd9a1e19548fe9152ead1b5e1bad4",
                 "shasum": ""
             },
             "replace": {
@@ -750,7 +715,7 @@
                 "responsive",
                 "web"
             ],
-            "time": "2014-06-24 23:07:17"
+            "time": "2014-06-26 09:49:35"
         },
         {
             "name": "yiisoft/jquery",
@@ -807,12 +772,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "f2a31883e261e98f9553f84baedc7b1d29a17c06"
+                "reference": "e7e334c5d8043434a9182920b9d40026522e89e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/f2a31883e261e98f9553f84baedc7b1d29a17c06",
-                "reference": "f2a31883e261e98f9553f84baedc7b1d29a17c06",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/e7e334c5d8043434a9182920b9d40026522e89e0",
+                "reference": "e7e334c5d8043434a9182920b9d40026522e89e0",
                 "shasum": ""
             },
             "require": {
@@ -880,7 +845,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2014-06-26 10:59:55"
+            "time": "2014-06-27 05:49:14"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -1064,12 +1029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-                "reference": "cc6d73eb043e1c2046611b6a7e7956ebd2e778a3"
+                "reference": "afd6982af372e6f99b92345b7fc0de7cdf0c9393"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/cc6d73eb043e1c2046611b6a7e7956ebd2e778a3",
-                "reference": "cc6d73eb043e1c2046611b6a7e7956ebd2e778a3",
+                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/afd6982af372e6f99b92345b7fc0de7cdf0c9393",
+                "reference": "afd6982af372e6f99b92345b7fc0de7cdf0c9393",
                 "shasum": ""
             },
             "require": {
@@ -1102,7 +1067,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2014-06-20 13:40:00"
+            "time": "2014-06-26 14:28:28"
         }
     ],
     "packages-dev": [
@@ -1146,12 +1111,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-codeception.git",
-                "reference": "a77f30b7a8655eada1e3a94a568800202ca1d9bf"
+                "reference": "397b4940da5d2ebbf017967f7a59307fb55a6eda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/a77f30b7a8655eada1e3a94a568800202ca1d9bf",
-                "reference": "a77f30b7a8655eada1e3a94a568800202ca1d9bf",
+                "url": "https://api.github.com/repos/yiisoft/yii2-codeception/zipball/397b4940da5d2ebbf017967f7a59307fb55a6eda",
+                "reference": "397b4940da5d2ebbf017967f7a59307fb55a6eda",
                 "shasum": ""
             },
             "require": {
@@ -1178,7 +1143,7 @@
                 "codeception",
                 "yii2"
             ],
-            "time": "2014-05-23 14:58:21"
+            "time": "2014-06-26 14:28:28"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -1230,12 +1195,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "e1525c1a2b0b6785b40e568c2b3e795f0d6503cc"
+                "reference": "df88f323be7c2e73e902a562358efb0b55bb86bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/e1525c1a2b0b6785b40e568c2b3e795f0d6503cc",
-                "reference": "e1525c1a2b0b6785b40e568c2b3e795f0d6503cc",
+                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/df88f323be7c2e73e902a562358efb0b55bb86bd",
+                "reference": "df88f323be7c2e73e902a562358efb0b55bb86bd",
                 "shasum": ""
             },
             "require": {
@@ -1267,7 +1232,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2014-06-25 17:03:58"
+            "time": "2014-06-26 18:17:04"
         }
     ],
     "aliases": [

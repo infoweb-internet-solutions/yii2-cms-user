@@ -19,14 +19,29 @@ return [
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
         ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@infoweb/user/views'
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'user' => [
-            'class' => 'infoweb\user\Module',
+            'class' => 'dektrium\user\Module',
+            'controllerMap' => [
+                'admin' => 'infoweb\user\controllers\AdminController'
+            ],
             'allowUnconfirmedLogin' => true,
             'confirmWithin' => 21600,
             'cost' => 12,
-            'admins' => ['infoweb']
+            'admins' => ['infoweb'],
+            'components' => [
+                'manager' => [
+                    'userClass' => 'infoweb\user\models\User',
+                ],
+            ],
         ],
 
 
