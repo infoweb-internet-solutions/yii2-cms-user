@@ -1,5 +1,32 @@
 # Yii2-user
 
+
+Add this to your config:
+
+'components' => [
+  ...
+  'view' => [
+      'theme' => [
+          'pathMap' => [
+              '@dektrium/user/views' => '@infoweb/user/views'
+          ],
+      ],
+  ],
+],
+'modules' => [
+  'user' => [
+    'controllerMap' => [
+      'admin' => 'infoweb\user\controllers\AdminController'
+    ],    
+    'components' => [
+      'manager' => [
+        'userClass' => 'infoweb\user\models\User',
+      ],
+    ],
+  ],
+],
+
+
 Most of web applications provide a way for users to register, log in or reset their forgotten passwords. Rather than
 re-implementing this on each application, you can use Yii2-user which is a flexible user management module for Yii2 that
 handles common tasks such as registration, authentication and password retrieval. Current version includes following features:
