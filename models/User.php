@@ -14,7 +14,8 @@ namespace infoweb\user\models;
 use dektrium\user\models\User as BaseUser;
 
 use dektrium\user\helpers\Password;
-use yii\helpers\Security;
+
+use Yii;
 
 /**
  * User ActiveRecord model.
@@ -34,7 +35,6 @@ use yii\helpers\Security;
  * @property string  $recovery_token
  * @property integer $recovery_sent_at
  * @property integer $blocked_at
- * @property string  $role
  * @property integer $created_at
  * @property integer $updated_at
  * @property string  $confirmationUrl
@@ -53,11 +53,41 @@ class User extends BaseUser
     /**
      * @inheritdoc
      */
+    public function attributeLabels()
+    {
+        return [
+            'username' => \Yii::t('user', 'Username'),
+            'email' => \Yii::t('user', 'Email'),
+            'password' => \Yii::t('user', 'Password'),
+            'created_at' => \Yii::t('user', 'Registration time'),
+            'registered_from' => \Yii::t('user', 'Registered from'),
+            'unconfirmed_email' => \Yii::t('user', 'Unconfirmed email'),
+            'current_password' => \Yii::t('user', 'Current password'),
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        return [
+            'register'        => ['username', 'email', 'password'],
+            'connect'         => ['username', 'email'],
+            'create'          => ['username', 'email', 'password'],
+            'update'          => ['username', 'email', 'password'],
+            'update_password' => ['password', 'current_password'],
+            'update_email'    => ['unconfirmed_email', 'current_password']
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function beforeSave($insert)
     {
         if ($insert) {
-            $this->setAttribute('auth_key', Security::generateRandomKey());
-            //$this->setAttribute('role', $this->module->defaultRole);
+            $this->setAttribute('auth_key', Yii::$app->getSecurity()->generateRandomKey());
         }
 
         if (!empty($this->password)) {
