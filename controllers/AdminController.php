@@ -40,15 +40,18 @@ class AdminController extends BaseAdminController
 
         if ($model->load($post) && $model->create()) {
 
-            // Revoke all roles for this user
-            $manager->revokeAll($model->id);
-
-            foreach ($post['roles'] as $role)
+            if (isset($post['roles']))
             {
-                // Get role object
-                $role = $manager->getRole($role);
-                // Assign the role
-                $manager->assign($role, $model->id);
+                // Revoke all roles for this user
+                $manager->revokeAll($model->id);
+
+                foreach ($post['roles'] as $role)
+                {
+                    // Get role object
+                    $role = $manager->getRole($role);
+                    // Assign the role
+                    $manager->assign($role, $model->id);
+                }
             }
 
             \Yii::$app->getSession()->setFlash('admin_user', \Yii::t('user', 'User has been created'));
