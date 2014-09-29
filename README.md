@@ -1,58 +1,70 @@
-# Yii2-user
+CMS user module for Yii 2
+========================
 
+Docs:
+-----
+- [Documentation](http://yii2-user.readthedocs.org/en/latest/).
 
-Add this to your config:
+Installation
+------------
+
+The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
+
+Either run
 
 ```
-'components' => [
-  ...
-  'view' => [
-      'theme' => [
-          'pathMap' => [
-              '@dektrium/user/views' => '@infoweb/user/views'
-          ],
-      ],
-  ],
-],
-'modules' => [
-  'user' => [
-    'controllerMap' => [
-      'admin' => 'infoweb\user\controllers\AdminController'
-    ],    
+php composer.phar require infoweb-internet-solutions/yii2-cms-user "*"
+```
+
+or add
+
+```
+"infoweb-internet-solutions/yii2-user": "*"
+```
+
+to the require section of your `composer.json` file.
+
+
+Usage
+-----
+
+Once the extension is installed, simply modify your application configuration as follows:
+
+```php
+return [
     'components' => [
-      'manager' => [
-        'userClass' => 'infoweb\user\models\User',
-      ],
+        ...        
+        // Override views
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@infoweb-internet-solutions/user/views'
+                ]
+            ]
+        ]
     ],
-  ],
-],
+    ...
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableUnconfirmedLogin' => true,
+            'confirmWithin' => 21600,
+            'cost' => 12,
+            'admins' => ['infoweb', 'admin'],
+            'components' => [
+                'manager' => [
+                    'userClass' => 'infoweb-internet-solutions\user\models\User'
+                ]
+            ],
+            'controllerMap' => [
+                'admin' => 'infoweb-internet-solutions\user\controllers\AdminController'
+            ],
+        ],
+    ]
+];
 ```
 
-
-Most of web applications provide a way for users to register, log in or reset their forgotten passwords. Rather than
-re-implementing this on each application, you can use Yii2-user which is a flexible user management module for Yii2 that
-handles common tasks such as registration, authentication and password retrieval. Current version includes following features:
-
-* Registration with an optional confirmation per mail
-* Registration via social networks
-* Password retrieval
-* Account and profile management
-* Console commands
-* User management interface
-
-> **NOTE:** Module is in initial development. Anything may change at any time.
-
-## Documentation
-
-Yii2-user documentation is available online: [Read the documentation](http://yii2-user.readthedocs.org/en/latest/).
-Installation instructions are located in [installation guide](http://yii2-user.readthedocs.org/en/latest/getting-started/installation.html).
-
-## Contributing
-
-Contributing instructions are located in [CONTRIBUTING.md](CONTRIBUTING.md) file.
-
-## License
-
-Yii2-user is released under the MIT License. See the bundled [LICENSE.md](LICENSE.md) for details.
-
-test
+To use the module, execute yii migration
+```
+yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
+```
