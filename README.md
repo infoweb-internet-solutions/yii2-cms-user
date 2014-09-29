@@ -39,7 +39,7 @@ return [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@infoweb-internet-solutions/user/views'
+                    '@dektrium/user/views' => '@infoweb/user/views'
                 ]
             ]
         ]
@@ -54,11 +54,11 @@ return [
             'admins' => ['infoweb', 'admin'],
             'components' => [
                 'manager' => [
-                    'userClass' => 'infoweb-internet-solutions\user\models\User'
+                    'userClass' => 'infoweb\user\models\User'
                 ]
             ],
             'controllerMap' => [
-                'admin' => 'infoweb-internet-solutions\user\controllers\AdminController'
+                'admin' => 'infoweb\user\controllers\AdminController'
             ],
         ],
     ]
