@@ -1,12 +1,12 @@
 {
-    "name": "infoweb/yii2-user",
+    "name": "infoweb-internet-solutions/yii2-cms-user",
     "description": "Flexible user registration and authentication module for Yii2",
     "keywords": ["yii2", "yii2-user", "user management", "infoweb"],
     "type": "yii2-extension",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/hashie5/yii2-user/issues?state=open",
-        "source": "https://github.com/hashie5/yii2-user"
+        "issues": "https://github.com/infoweb-internet-solutions/yii2-cms-user/issues?state=open",
+        "source": "https://github.com/infoweb-internet-solutions/yii2-cms-user"
     },
     "authors": [
         {
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "infoweb\\user\\": ""
+            "infoweb-internet-solutions\\user\\": ""
         }
     }
 }
