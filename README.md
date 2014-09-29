@@ -1,7 +1,7 @@
 CMS user module for Yii 2
 ========================
 
-Docs:
+Docs
 -----
 - [Documentation](http://yii2-user.readthedocs.org/en/latest/).
 
