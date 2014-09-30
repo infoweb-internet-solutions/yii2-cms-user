@@ -32,7 +32,8 @@ class UserSearch extends BaseUserSearch
         
         // Don't show super admin for other users
         if (!Yii::$app->user->can('superAdmin')) {
-            $query->andWhere('id != :id', ['id' => Yii::$app->params['superAdminId']]);
+            // The superadmin id is loaded from the 'infoweb-user' submodule
+            $query->andWhere('id != :id', ['id' => Yii::$app->getModule('user')->getModule('infoweb-user')->params['superAdminId']]);
         }        
                 
         $dataProvider = new ActiveDataProvider([

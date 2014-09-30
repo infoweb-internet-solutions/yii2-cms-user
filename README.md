@@ -54,12 +54,18 @@ return [
             'admins' => ['infoweb', 'admin'],
             'components' => [
                 'manager' => [
-                    'userClass' => 'infoweb\user\models\User'
-                ]
+                    'userClass' => 'infoweb\user\models\User',
+                ],
             ],
             'controllerMap' => [
                 'admin' => 'infoweb\user\controllers\AdminController'
             ],
+            'modules' => [
+                // Register the custom module as a submodule
+                'infoweb-user' => [
+                    'class' => 'infoweb\user\Module'
+                ]
+            ]
         ],
     ]
 ];
@@ -67,5 +73,6 @@ return [
 
 To use the module, execute yii migration
 ```
+yii migrate/up --migrationPath=@vendor/infoweb-internet-solutions/yii2-user/migrations
 yii migrate/up --migrationPath=@vendor/dektrium/yii2-user/migrations
 ```
