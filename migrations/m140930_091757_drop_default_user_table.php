@@ -8,8 +8,8 @@ class m140930_091757_drop_default_user_table extends Migration
     public function up()
     {
         // Drop the default user and profile table
-        $this->dropTable('{{%user}}');
         $this->dropTable('{{%profile}}');
+        $this->dropTable('{{%user}}');       
     }
 
     public function down()
