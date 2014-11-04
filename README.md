@@ -55,6 +55,7 @@ return [
             'components' => [
                 'manager' => [
                     'userClass' => 'infoweb\user\models\User',
+                    'userSearchClass' => 'infoweb\user\models\UserSearch',
                 ],
             ],
             'controllerMap' => [
