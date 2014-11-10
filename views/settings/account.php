@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'email') ?>
 
-                <?= $form->field($model, 'username') ?>
+                <?= $form->field($model, 'username')->textInput(['readonly' => true]) ?>
 
                 <?= $form->field($model, 'new_password')->passwordInput() ?>
 
