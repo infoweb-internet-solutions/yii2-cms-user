@@ -65,22 +65,7 @@ class User extends BaseUser
             'current_password' => \Yii::t('user', 'Current password'),
         ];
     }
-
-    /**
-     * @inheritdoc
-     */
-    public function scenarios()
-    {
-        return [
-            'register'        => ['username', 'email', 'password'],
-            'connect'         => ['username', 'email'],
-            'create'          => ['username', 'email', 'password'],
-            'update'          => ['username', 'email', 'password'],
-            'update_password' => ['password', 'current_password'],
-            'update_email'    => ['unconfirmed_email', 'current_password']
-        ];
-    }
-
+    
     /**
      * @inheritdoc
      */
