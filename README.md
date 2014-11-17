@@ -56,10 +56,12 @@ return [
                 'manager' => [
                     'userClass' => 'infoweb\user\models\User',
                     'userSearchClass' => 'infoweb\user\models\UserSearch',
+                    'profileClass' => 'infoweb\user\models\Profile'
                 ],
             ],
             'controllerMap' => [
-                'admin' => 'infoweb\user\controllers\AdminController'
+                'admin' => 'infoweb\user\controllers\AdminController',
+                'settings' => 'infoweb\user\controllers\SettingsController'
             ],
             'modules' => [
                 // Register the custom module as a submodule

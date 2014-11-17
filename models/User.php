@@ -11,11 +11,10 @@
 
 namespace infoweb\user\models;
 
-use dektrium\user\models\User as BaseUser;
-
-use dektrium\user\helpers\Password;
-
 use Yii;
+use yii\helpers\ArrayHelper;
+use dektrium\user\models\User as BaseUser;
+use dektrium\user\helpers\Password;
 
 /**
  * User ActiveRecord model.
@@ -50,6 +49,15 @@ use Yii;
  */
 class User extends BaseUser
 {
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'image' => [
+                'class' => 'infoweb\cms\behaviors\ImageBehave',
+            ],
+        ]);
+    }
+
     /**
      * @inheritdoc
      */

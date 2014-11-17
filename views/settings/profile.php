@@ -10,6 +10,7 @@
  */
 
 use yii\helpers\Html;
+use kartik\widgets\FileInput;
 
 /**
  * @var yii\web\View $this
@@ -19,6 +20,17 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('user', 'Profile settings');
 $this->params['breadcrumbs'][] = $this->title;
+
+$initialPreview = [];
+$initialCaption = '';
+
+if (strlen($model->user->getImage()->name) > 0) {
+    $initialPreview = [
+        Html::img($model->user->getImage()->getUrl(), ['class' => 'file-preview-image', 'alt' => $model->user->getImage()->alt, 'title' => $model->user->getImage()->alt]),
+    ];
+
+    $initialCaption = $model->user->getImage()->name;
+}
 ?>
 
 <?= $this->render('/_alert') ?>
@@ -37,10 +49,34 @@ $this->params['breadcrumbs'][] = $this->title;
                         'labelOptions' => ['class' => 'control-label'],
                     ],
                     'enableAjaxValidation'   => true,
-                    'enableClientValidation' => false
+                    'enableClientValidation' => false,
+                    'options' => ['enctype' => 'multipart/form-data']
                 ]); ?>
 
                 <?= $form->field($model, 'name') ?>
+                
+                <?= $form->field($image, 'image[]')->widget(FileInput::classname(), [
+                    'options' => [
+                        'accept' => 'image/*',
+                    ],
+                    'pluginOptions' => [
+                        'initialPreview' => $initialPreview,
+                        'showPreview' => true,
+                        'showCaption' => true,
+                        'showRemove' => true,
+                        'showUpload' => false,
+                        'initialCaption' => $initialCaption,
+                    ],
+                    'pluginEvents' => [
+                        "fileclear" => "function() {
+                            var request = $.post('remove-images', {model: '{$model->user->id}'});
+                            
+                            request.done(function(response) {
+               
+                            });
+                        }"
+                    ]
+                ]) ?>
 
                 <div class="form-group">
                     <div>
