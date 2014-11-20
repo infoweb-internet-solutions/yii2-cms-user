@@ -86,7 +86,7 @@ class SettingsController extends BaseController
                     $upload->image = $image;
 
                     if ($upload->validate()) {
-                        $path = \Yii::getAlias('@uploadsBaseUrl') . "/img/{$upload->image->baseName}.{$upload->image->extension}";
+                        $path = \Yii::getAlias('@uploadsBasePath') . "/img/{$upload->image->baseName}.{$upload->image->extension}";
 
                         $upload->image->saveAs($path);
 
