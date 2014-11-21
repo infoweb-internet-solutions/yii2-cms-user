@@ -69,7 +69,7 @@ class SettingsController extends BaseController
         }
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->save()) {
-            
+
             // Upload image
             $form = new ImageUploadForm;
             $images = UploadedFile::getInstances($form, 'image');
