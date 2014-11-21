@@ -11,9 +11,9 @@
 
 namespace infoweb\user\models;
 
-use yii\web\User as BaseUser;
+//use yii\web\User as BaseUser;
 
-class WebUser extends BaseUser
+class WebUser extends \yii\web\User
 {
     public $identityClass = 'infoweb\user\models\User';
     
