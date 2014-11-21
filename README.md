@@ -29,7 +29,7 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply modify your application configuration as follows:
+Once the extension is installed, simply modify your backend configuration as follows:
 
 ```php
 return [
@@ -42,7 +42,11 @@ return [
                     '@dektrium/user/views' => '@infoweb/user/views'
                 ]
             ]
-        ]
+        ],
+        'user' => [
+            'identityClass' => 'infoweb\user\models\User',
+            'enableAutoLogin' => true,
+        ],
     ],
     ...
     'modules' => [
@@ -52,6 +56,7 @@ return [
             'confirmWithin' => 21600,
             'cost' => 12,
             'admins' => ['infoweb', 'admin'],
+            'webUserClass' => 'infoweb\user\models\WebUser',
             'components' => [
                 'manager' => [
                     'userClass' => 'infoweb\user\models\User',
@@ -72,6 +77,14 @@ return [
         ],
     ]
 ];
+```
+
+and your common configuration as follows:
+```
+'as access' => [
+    'class' => 'infoweb\user\components\AccessControl',
+    'user' => 'infoweb\user\models\WebUser'
+],
 ```
 
 To use the module, execute yii migration
