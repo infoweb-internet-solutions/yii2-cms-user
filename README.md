@@ -34,7 +34,12 @@ Once the extension is installed, simply modify your backend configuration as fol
 ```php
 return [
     'components' => [
-        ...        
+        ...
+        // Replace default user component:
+        'user' => [
+            'identityClass' => 'infoweb\user\models\User',
+            'enableAutoLogin' => true,
+        ],
         // Override views
         'view' => [
             'theme' => [
@@ -42,10 +47,6 @@ return [
                     '@dektrium/user/views' => '@infoweb/user/views'
                 ]
             ]
-        ],
-        'user' => [
-            'identityClass' => 'infoweb\user\models\User',
-            'enableAutoLogin' => true,
         ],
     ],
     ...
