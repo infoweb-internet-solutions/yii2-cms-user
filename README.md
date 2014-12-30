@@ -76,16 +76,13 @@ return [
                 ]
             ]
         ],
-    ]
+    ],
+    ...
+    'as access' => [
+        'class' => 'infoweb\user\components\AccessControl',
+        'user' => 'infoweb\user\models\WebUser'
+    ],
 ];
-```
-
-and your common configuration as follows:
-```
-'as access' => [
-    'class' => 'infoweb\user\components\AccessControl',
-    'user' => 'infoweb\user\models\WebUser'
-],
 ```
 
 To use the module, execute yii migration
