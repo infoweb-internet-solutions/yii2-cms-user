@@ -61,7 +61,7 @@ class SettingsController extends BaseController
      */
     public function actionProfile()
     {
-        $model = $this->module->manager->findProfileById(\Yii::$app->user->identity->getId());
+        $model = $this->finder->findProfileById(\Yii::$app->user->identity->getId());
 
         if (\Yii::$app->request->isAjax && $model->load(\Yii::$app->request->post())) {
             \Yii::$app->response->format = Response::FORMAT_JSON;
