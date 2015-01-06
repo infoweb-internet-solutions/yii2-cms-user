@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m140930_091757_drop_default_user_table extends Migration
+class m140109_091757_drop_default_user_table extends Migration
 {
     public function up()
     {
@@ -13,7 +13,7 @@ class m140930_091757_drop_default_user_table extends Migration
 
     public function down()
     {
-        echo "m140930_091757_drop_default_user_table cannot be reverted.\n";
+        echo "m140109_091757_drop_default_user_table cannot be reverted.\n";
 
         return false;
     }
