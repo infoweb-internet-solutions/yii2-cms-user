@@ -57,13 +57,11 @@ return [
             'confirmWithin' => 21600,
             'cost' => 12,
             'admins' => ['infoweb', 'admin'],
-            'webUserClass' => 'infoweb\user\models\WebUser',
-            'components' => [
-                'manager' => [
-                    'userClass' => 'infoweb\user\models\User',
-                    'userSearchClass' => 'infoweb\user\models\UserSearch',
-                    'profileClass' => 'infoweb\user\models\Profile'
-                ],
+            'modelMap' => [
+                'User' => 'infoweb\user\models\User',
+                'UserSearch' => 'infoweb\user\models\UserSearch',
+                'Profile' => 'infoweb\user\models\Profile',
+                'WebUser' => 'infoweb\user\models\WebUser',
             ],
             'controllerMap' => [
                 'admin' => 'infoweb\user\controllers\AdminController',
