@@ -33,11 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'username')->textInput(['maxlength' => 25, 'autofocus' => true]) ?>
+        <?= $form->field($user, 'username')->textInput(['maxlength' => 25, 'autofocus' => true]) ?>
 
-        <?= $form->field($model, 'email')->textInput(['maxlength' => 255]) ?>
+        <?= $form->field($user, 'email')->textInput(['maxlength' => 255]) ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($user, 'password')->passwordInput() ?>
 
         <div class="form-group field-user-role">
             <label for="user-role" class="control-label">Role</label>
