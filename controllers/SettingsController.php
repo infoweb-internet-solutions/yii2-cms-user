@@ -11,6 +11,7 @@
 
 namespace infoweb\user\controllers;
 
+use Yii;
 use yii\web\UploadedFile;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -34,11 +35,12 @@ class SettingsController extends BaseController
     public function behaviors()
     {
         return [
+            /*
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'disconnect' => ['post'],
-                    'removeImages' => ['post']
+                    'removeImages' => ['post'],
                 ],
             ],
             'access' => [
@@ -51,6 +53,7 @@ class SettingsController extends BaseController
                     ],
                 ]
             ],
+            */
         ];
     }
     
@@ -68,7 +71,7 @@ class SettingsController extends BaseController
             return ActiveForm::validate($model);
         }
 
-        if ($model->load(\Yii::$app->getRequest()->post()) && $model->save()) {
+        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
 
             // Upload image
             $form = new ImageUploadForm;
@@ -139,14 +142,17 @@ class SettingsController extends BaseController
         
         if (isset($post['model']) && !empty($post['model'])) {
             // Load model
-            $model = $this->module->manager->findProfileById(\Yii::$app->user->identity->getId());
-            
+            $model = $this->finder->findProfileById(\Yii::$app->user->identity->getId());
+            $user = $model->user;
+
             // Remove the images
-            $model->removeImages();
+            $user->removeImages();
         }
         
         // Return validation in JSON format
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $response;
     }
+
+
 }
