@@ -34,7 +34,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endif; ?>
 </h1>
 
-<?php echo $this->renderFile('@dektrium/user/views/admin/flash.php') ?>
+<?= $this->render('/_alert', [
+    'module' => Yii::$app->getModule('user'),
+]) ?>
 
 <div class="panel panel-info">
     <div class="panel-heading"><?= Yii::t('user', 'Information') ?></div>
