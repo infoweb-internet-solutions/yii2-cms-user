@@ -39,14 +39,35 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['salutation', 'name', 'firstname', 'email', 'profession', 'username', 'password', 'agree_user_terms', 'read_privacy_policy', 'profession_declaration'], 'required'],
-            [['name', 'firstname', 'email', 'username'], 'trim'],
+            [['salutation', 'name', 'firstname', 'email', 'address', 'profession', 'username', 'password', 'agree_user_terms', 'read_privacy_policy', 'profession_declaration'], 'required'],
+            [['name', 'firstname', 'email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'username', 'workplace_name', 'responsible_pneumologist'], 'trim'],
+            // Username has to be unique
             ['username', 'unique', 'targetClass' => 'infoweb\models\frontend\User', 'message' => Yii::t('app', 'This username has already been taken.')],
             ['username', 'string', 'min' => 2, 'max' => 255],
+            ['email', 'email'],
+            // Emailaddress has to be unique
             ['email', 'unique', 'targetClass' => 'infoweb\models\frontend\User', 'message' => Yii::t('app', 'This email address has already been taken.')],
-            // The password must contain at least one number and symbol
+            [['agree_user_terms', 'read_privacy_policy', 'profession_declaration'], 'compare', 'compareValue' => 1],
+            // The password must contain at least one number and one symbol
             ['password', 'match', 'pattern' => '/^(?=.*[0-9])(?=.*[@#$%^&*])[A-Za-z0-9@#$%^&*]{6,}$/'],
-            ['password', 'compare']
+            // Passwords must match
+            ['password', 'compare'],
+            // Nurses and pneumologists must have a specific workplace_type
+            ['workplace_type', 'in', 'range' => [User::WORKPLACETYPE_HOSPITAL, User::WORKPLACETYPE_PRIVATE], 'when' => function($model) {
+                return in_array($model->profession, [User::PROFESSION_PNEUMOLOGIST, User::PROFESSION_NURSE]);
+            }],
+            // Nurses and pneumologists must have a workplace_name
+            ['workplace_name', 'required', 'when' => function($model) {
+                return in_array($model->profession, [User::PROFESSION_PNEUMOLOGIST, User::PROFESSION_NURSE]);
+            }],
+            // Pharmacists need an APB number
+            ['apb_number', 'required', 'when' => function($model) {
+                return $model->profession == User::PROFESSION_PHARMACIST;
+            }],
+            // All the rest needs a riziv number
+            ['riziv_number', 'required', 'when' => function($model) {
+                return !in_array($model->profession, [User::PROFESSION_PHARMACIST, '']);
+            }]
         ];
     }
     
@@ -64,6 +85,7 @@ class SignupForm extends Model
             'firstname'                         => Yii::t('infoweb/user', 'Firstname'),
             'name'                              => Yii::t('infoweb/user', 'Name'),
             'profession'                        => Yii::t('infoweb/user', 'Profession'),
+            'workplace_type'                    => Yii::t('infoweb/user', 'Workplace'),
             'riziv_number'                      => Yii::t('infoweb/user', 'Riziv number'),
             'apb_number'                        => Yii::t('infoweb/user', 'APB number'),
             'agree_user_terms'                  => Yii::t('infoweb/user', 'I agree with the user-terms'),
