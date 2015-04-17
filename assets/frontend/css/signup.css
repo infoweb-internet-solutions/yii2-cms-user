@@ -1,0 +1,25 @@
+.field-signupform-responsible_pneumologist,
+.container-workplace-fields,
+.field-signupform-riziv_number,
+.field-signupform-apb_number {
+    display: none;
+}
+
+.has-success .help-block,
+.has-success .control-label,
+.has-success .radio,
+.has-success .checkbox,
+.has-success .radio-inline,
+.has-success .checkbox-inline,
+.has-success.radio label,
+.has-success.checkbox label,
+.has-success.radio-inline label,
+.has-success.checkbox-inline label {
+    color: #333;
+}
+
+.has-success .form-control,
+.has-success .form-control:focus {
+    border-color: #ccc;
+    box-shadow: none;
+}
