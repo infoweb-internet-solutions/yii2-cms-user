@@ -11,11 +11,10 @@
 
 namespace infoweb\user\models;
 
-use dektrium\user\models\UserSearch as BaseUserSearch;
-
 use yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use dektrium\user\models\UserSearch as BaseUserSearch;
 
 /**
  * UserSearch represents the model behind the search form about User.
@@ -34,7 +33,10 @@ class UserSearch extends BaseUserSearch
         if (!Yii::$app->user->can('Superadmin')) {
             // The superadmin id is loaded from the 'infoweb-user' submodule
             $query->andWhere('id != :id', ['id' => Yii::$app->getModule('user')->getModule('infoweb-user')->params['superAdminId']]);
-        }        
+        }
+        
+        // Only show users that are allowed to access the backend
+        $query->andWhere(['scope' => [User::SCOPE_BACKEND, User::SCOPE_BOTH]]);        
                 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
