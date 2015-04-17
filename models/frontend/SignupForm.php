@@ -102,14 +102,46 @@ class SignupForm extends Model
     public function signup()
     {
         if ($this->validate()) {
-            $user = new User();
-            $user->username = $this->username;
-            $user->email = $this->email;
-            $user->setPassword($this->password);
-            $user->generateAuthKey();
+            
+            $transaction = Yii::$app->db->beginTransaction();
+            
+            // Create the user
+            $user = new User([
+                'username'          => $this->username,
+                'email'             => $this->email,
+                'password_hash'     => Yii::$app->security->generatePasswordHash($this->password),
+                'auth_key'          => Yii::$app->security->generateRandomString(),
+                'scope'             => User::SCOPE_FRONTEND,
+                'confirmed_at'      => time()
+            ]);
+            
             if ($user->save()) {
-                return $user;
-            }
+                
+                // Create the profile
+                $profile = new Profile([
+                    'user_id'                       => $user->id,
+                    'name'                          => $this->name,
+                    'public_email'                  => $this->email,
+                    'firstname'                     => $this->firstname,
+                    'salutation'                    => $this->salutation,
+                    'profession'                    => $this->profession,
+                    'address'                       => $this->address,
+                    'city'                          => $this->city,
+                    'zipcode'                       => $this->zipcode,
+                    'phone'                         => $this->phone,
+                    'mobile'                        => $this->mobile,
+                    'workplace_type'                => (in_array($this->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE])) ? $this->workplace_type : '',
+                    'workplace_name'                => (in_array($this->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE])) ? $this->workplace_name : '',
+                    'riziv_number'                  => ($this->profession != Profile::PROFESSION_PHARMACIST) ? $this->riziv_number : '',
+                    'apb_number'                    => ($this->profession == Profile::PROFESSION_PHARMACIST) ? $this->apb_number : '',
+                    'responsible_pneumologist'      => ($this->profession == Profile::PROFESSION_NURSE) ? $this->responsible_pneumologist : ''
+                ]);
+                
+                if ($profile->save(false)) {
+                    $transaction->commit();
+                    return $user;
+                }                                    
+            }            
         }
 
         return null;
