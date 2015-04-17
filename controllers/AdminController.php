@@ -11,13 +11,11 @@
 
 namespace infoweb\user\controllers;
 
-use dektrium\user\controllers\AdminController as BaseAdminController;
-
-
-use mdm\admin\models;
-use yii\helpers\ArrayHelper;
-use infoweb\user\models\User;
 use Yii;
+use yii\helpers\ArrayHelper;
+use dektrium\user\controllers\AdminController as BaseAdminController;
+use mdm\admin\models;
+use infoweb\user\models\User;
 
 /**
  * AdminController allows you to administrate users.
