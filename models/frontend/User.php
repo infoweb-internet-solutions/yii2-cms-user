@@ -48,7 +48,7 @@ class User extends BaseUser
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'scope' => self::SCOPE_FRONTEND]);
+        return static::findOne(['username' => $username, 'scope' => [self::SCOPE_FRONTEND, self::SCOPE_BOTH]]);
     }
     
      /**
@@ -56,7 +56,7 @@ class User extends BaseUser
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'scope' => self::SCOPE_FRONTEND]);
+        return static::findOne(['id' => $id, 'scope' => [self::SCOPE_FRONTEND, self::SCOPE_BOTH]]);
     }
     
     /**
@@ -73,7 +73,7 @@ class User extends BaseUser
 
         return static::findOne([
             'password_reset_token' => $token,
-            'scope' => self::SCOPE_FRONTEND,
+            'scope' => [self::SCOPE_FRONTEND, self::SCOPE_BOTH],
         ]);
     }
 
