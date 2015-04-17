@@ -3,46 +3,29 @@
 namespace infoweb\user\models\frontend;
 
 use Yii;
-use yii\web\User as BaseUser;
+use yii\db\ActiveRecord;
+use infoweb\user\models\User as BaseUser;
 
 class User extends BaseUser
-{
-    // Salutation constants
-    const SALUTATION_MR = 'mr';
-    const SALUTATION_MS = 'ms';
-    
-    // Workplacetype constants
-    const WORKPLACETYPE_HOSPITAL    = 'hospital';
-    const WORKPLACETYPE_PRIVATE     = 'private';
-    
-    // Profession constants
-    const PROFESSION_PNEUMOLOGIST   = 'pneumologist';
-    const PROFESSION_ALLERGIST      = 'allergist';
-    const PROFESSION_NKO            = 'nko';
-    const PROFESSION_INTERNIST      = 'internist';
-    const PROFESSION_DOCTOR         = 'doctor';
-    const PROFESSION_NURSE          = 'nurse';
-    const PROFESSION_PHARMACIST     = 'pharmacist';
-        
+{   
     public $identityClass = 'infoweb\user\models\User';
     
-    public $loginUrl = ['user/security/login'];
+    public $loginUrl = ['site/login'];
+    
+    /** @inheritdoc */
+    public function scenarios()
+    {
+        return ActiveRecord::scenarios();
+    }        
     
     /**
-     * Returns the professions
+     * Custom implementation because the parent class created the Profile object
+     * in this function.
      * 
-     * @return  array
+     * @inheritdoc
      */
-    public static function professions()
+    public function afterSave($insert, $changedAttributes)
     {
-        return [
-            self::PROFESSION_PNEUMOLOGIST   => Yii::t('infoweb/user', 'Pneumologist'),
-            self::PROFESSION_ALLERGIST      => Yii::t('infoweb/user', 'Allergist'),
-            self::PROFESSION_NKO            => Yii::t('infoweb/user', 'NKO'),
-            self::PROFESSION_INTERNIST      => Yii::t('infoweb/user', 'Internist'),
-            self::PROFESSION_DOCTOR         => Yii::t('infoweb/user', 'Doctor'),
-            self::PROFESSION_NURSE          => Yii::t('infoweb/user', 'Nurse'),
-            self::PROFESSION_PHARMACIST     => Yii::t('infoweb/user', 'Pharmacist')
-        ];
+        ActiveRecord::afterSave($insert, $changedAttributes);
     }    
 }

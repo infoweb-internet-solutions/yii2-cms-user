@@ -48,7 +48,12 @@ use dektrium\user\helpers\Password;
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class User extends BaseUser
-{
+{    
+    // Scope constants
+    const SCOPE_BACKEND     = 'backend';
+    const SCOPE_FRONTEND    = 'frontend';
+    const SCOPE_BOTH        = 'both';
+    
     public function rules()
     {
         $rules = parent::rules();

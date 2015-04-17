@@ -3,7 +3,7 @@ namespace infoweb\user\models\frontend;
 
 use Yii;
 use yii\base\Model;
-
+use infoweb\user\models\Profile;
 
 /**
  * Signup form
@@ -42,31 +42,31 @@ class SignupForm extends Model
             [['salutation', 'name', 'firstname', 'email', 'address', 'profession', 'username', 'password', 'agree_user_terms', 'read_privacy_policy', 'profession_declaration'], 'required'],
             [['name', 'firstname', 'email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'username', 'workplace_name', 'responsible_pneumologist'], 'trim'],
             // Username has to be unique
-            ['username', 'unique', 'targetClass' => 'infoweb\models\frontend\User', 'message' => Yii::t('app', 'This username has already been taken.')],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'message' => Yii::t('infoweb/user', 'This username has already been taken.')],
+            ['username', 'string', 'min' => 3, 'max' => 255],
             ['email', 'email'],
             // Emailaddress has to be unique
-            ['email', 'unique', 'targetClass' => 'infoweb\models\frontend\User', 'message' => Yii::t('app', 'This email address has already been taken.')],
+            ['email', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'message' => Yii::t('infoweb/user', 'This email address has already been taken.')],
             [['agree_user_terms', 'read_privacy_policy', 'profession_declaration'], 'compare', 'compareValue' => 1],
             // The password must contain at least one number and one symbol
-            ['password', 'match', 'pattern' => '/^(?=.*[0-9])(?=.*[@#$%^&*])[A-Za-z0-9@#$%^&*]{6,}$/'],
+            [['password', 'password_repeat'], 'match', 'pattern' => '/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/'],
             // Passwords must match
-            ['password', 'compare'],
+            ['password', 'compare', 'compareAttribute' => 'password_repeat'],
             // Nurses and pneumologists must have a specific workplace_type
-            ['workplace_type', 'in', 'range' => [User::WORKPLACETYPE_HOSPITAL, User::WORKPLACETYPE_PRIVATE], 'when' => function($model) {
-                return in_array($model->profession, [User::PROFESSION_PNEUMOLOGIST, User::PROFESSION_NURSE]);
+            ['workplace_type', 'in', 'range' => [Profile::WORKPLACETYPE_HOSPITAL, Profile::WORKPLACETYPE_PRIVATE], 'when' => function($model) {
+                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
             }],
             // Nurses and pneumologists must have a workplace_name
             ['workplace_name', 'required', 'when' => function($model) {
-                return in_array($model->profession, [User::PROFESSION_PNEUMOLOGIST, User::PROFESSION_NURSE]);
+                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
             }],
             // Pharmacists need an APB number
             ['apb_number', 'required', 'when' => function($model) {
-                return $model->profession == User::PROFESSION_PHARMACIST;
+                return $model->profession == Profile::PROFESSION_PHARMACIST;
             }],
             // All the rest needs a riziv number
             ['riziv_number', 'required', 'when' => function($model) {
-                return !in_array($model->profession, [User::PROFESSION_PHARMACIST, '']);
+                return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, '']);
             }]
         ];
     }

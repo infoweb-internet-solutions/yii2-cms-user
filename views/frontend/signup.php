@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use infoweb\user\models\frontend\User;
+use infoweb\user\models\Profile;
 use infoweb\user\assets\frontend\SignupAsset;
 
 SignupAsset::register($this);
@@ -24,8 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
             
                 <?php // User specific fields ?>
                 <?= $form->field($model, 'salutation')->inline()->radioList([
-                    User::SALUTATION_MR => Yii::t('infoweb/user', 'Mr.'),
-                    User::SALUTATION_MS => Yii::t('infoweb/user', 'Ms.')    
+                    Profile::SALUTATION_MR => Yii::t('infoweb/user', 'Mr.'),
+                    Profile::SALUTATION_MS => Yii::t('infoweb/user', 'Ms.')    
                 ]) ?>                
                 <div class="row">
                     <div class="col-sm-6">
@@ -64,8 +64,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="row container-workplace-fields">
                     <div class="col-sm-3">
                         <?= $form->field($model, 'workplace_type')->dropDownList([
-                            User::WORKPLACETYPE_HOSPITAL => Yii::t('infoweb/user', 'Hospital'),
-                            User::WORKPLACETYPE_PRIVATE => Yii::t('infoweb/user', 'Private practice')    
+                            Profile::WORKPLACETYPE_HOSPITAL => Yii::t('infoweb/user', 'Hospital'),
+                            Profile::WORKPLACETYPE_PRIVATE => Yii::t('infoweb/user', 'Private practice')    
                         ]) ?>
                     </div>
                     <div class="col-sm-9">
