@@ -5,6 +5,7 @@ namespace infoweb\user\models\frontend;
 use Yii;
 use yii\db\ActiveRecord;
 use infoweb\user\models\User as BaseUser;
+use infoweb\user\models\Profile;
 
 class User extends BaseUser
 {   
@@ -92,5 +93,13 @@ class User extends BaseUser
         $parts = explode('_', $token);
         $timestamp = (int) end($parts);
         return $timestamp + $expire >= time();
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProfile()
+    {
+        return $this->hasOne(Profile::className(), ['user_id' => 'id']);
     }   
 }
