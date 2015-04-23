@@ -50,6 +50,37 @@ class Profile extends BaseProfile
     const PROFESSION_NURSE          = 'nurse';
     const PROFESSION_PHARMACIST     = 'pharmacist';
     
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['salutation', 'name', 'firstname', 'public_email', 'address', 'profession'], 'required'],
+            [['name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'workplace_name', 'responsible_pneumologist'], 'trim'],
+            ['newsletter', 'number'],
+            ['public_email', 'email'],
+            // Emailaddress has to be unique
+            ['public_email', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'targetAttribute' => 'email', 'message' => Yii::t('infoweb/user', 'This email address has already been taken.')],
+            // Nurses and pneumologists must have a specific workplace_type
+            ['workplace_type', 'in', 'range' => [Profile::WORKPLACETYPE_HOSPITAL, Profile::WORKPLACETYPE_PRIVATE], 'when' => function($model) {
+                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
+            }],
+            // Nurses and pneumologists must have a workplace_name
+            ['workplace_name', 'required', 'when' => function($model) {
+                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
+            }],
+            // Pharmacists need an APB number
+            ['apb_number', 'required', 'when' => function($model) {
+                return $model->profession == Profile::PROFESSION_PHARMACIST;
+            }],
+            // All the rest needs a riziv number
+            ['riziv_number', 'required', 'when' => function($model) {
+                return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, '']);
+            }]
+        ];
+    }
+    
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
@@ -80,5 +111,22 @@ class Profile extends BaseProfile
             self::PROFESSION_NURSE          => Yii::t('infoweb/user', 'Nurse'),
             self::PROFESSION_PHARMACIST     => Yii::t('infoweb/user', 'Pharmacist')
         ];
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'public_email'                      => Yii::t('user', 'Email'),
+            'salutation'                        => Yii::t('infoweb/user', 'Salutation'),
+            'firstname'                         => Yii::t('infoweb/user', 'Firstname'),
+            'name'                              => Yii::t('infoweb/user', 'Name'),
+            'profession'                        => Yii::t('infoweb/user', 'Profession'),
+            'riziv_number'                      => Yii::t('infoweb/user', 'Riziv number'),
+            'apb_number'                        => Yii::t('infoweb/user', 'APB number'),
+            'workplace_name'                    => Yii::t('infoweb/user', 'Workplace name'),
+        ]);
     }
 }
