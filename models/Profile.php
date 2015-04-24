@@ -92,6 +92,9 @@ class Profile extends BaseProfile
                 ],
                 'value' => function() { return time(); },
             ],
+            'image' => [
+                'class' => 'infoweb\cms\behaviors\ImageBehave',
+            ],
         ]);
     }
     
