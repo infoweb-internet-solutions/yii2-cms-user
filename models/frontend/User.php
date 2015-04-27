@@ -6,6 +6,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use infoweb\user\models\User as BaseUser;
 use infoweb\user\models\Profile;
+use infoweb\agenda\models\item\Item as AgendaItem;
 
 class User extends BaseUser
 {   
@@ -101,5 +102,14 @@ class User extends BaseUser
     public function getProfile()
     {
         return $this->hasOne(Profile::className(), ['user_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAgendaItems()
+    {
+        return $this->hasMany(AgendaItem::className(), ['id' => 'agenda_item_id'])
+                    ->viaTable('user_agenda_items', ['user_id' => 'id']);
     }   
 }
