@@ -40,10 +40,11 @@ return [
             'identityClass' => 'infoweb\user\models\User',
             'enableAutoLogin' => true,
         ],
-        // Override views
+        // Add to views
         'view' => [
             'theme' => [
                 'pathMap' => [
+					...
                     '@dektrium/user/views' => '@infoweb/user/views'
                 ]
             ]
