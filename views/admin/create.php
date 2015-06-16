@@ -27,10 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::encode($this->title) ?>
     </div>
     <div class="panel-body">
-        <div class="alert alert-info">
-            <?= Yii::t('user', 'Password and username will be sent to user by email') ?>.
-            <?= Yii::t('user', 'If you want password to be generated automatically leave its field empty') ?>.
-        </div>
         <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($user, 'username')->textInput(['maxlength' => 25, 'autofocus' => true]) ?>
@@ -40,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $form->field($user, 'password')->passwordInput() ?>
 
         <div class="form-group field-user-role">
-            <label for="user-role" class="control-label">Role</label>
+            <label for="user-role" class="control-label"><?= Yii::t('app', 'Role') ?></label>
             <?= Html::dropDownList('roles', '', ArrayHelper::map($roles, 'name', 'description'), ['class' => 'form-control', 'multiple' => 'true', 'style' => 'height: 150px;']) ?>
         </div>
 
