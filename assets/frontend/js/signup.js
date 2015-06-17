@@ -26,7 +26,8 @@ var SignupForm = (function() {
     
     SignupForm.registerEventHandlers = function() {
         $(document)
-            .on('change', '#signupform-profession', SignupForm.toggleProfessionSpecificFields);    
+            .on('change', '#signupform-profession', SignupForm.toggleProfessionSpecificFields)
+            .on('keyup', '#signupform-email', SignupForm.copyEmailToUsername);    
     };
     
     /**
@@ -73,6 +74,16 @@ var SignupForm = (function() {
                 $('.field-signupform-apb_number').hide();
                 break;      
         }    
+    };
+    
+    /**
+     * Copies the value of the emailaddress to the username field 
+     * 
+     * @param   Event
+     * @return  void
+     */
+    SignupForm.copyEmailToUsername = function(event) {
+        $('#signupform-username').val($(this).val());    
     };
     
     return SignupForm;    
