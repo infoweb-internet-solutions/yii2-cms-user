@@ -3,6 +3,7 @@ namespace infoweb\user\models\frontend;
 
 use Yii;
 use yii\base\Model;
+use yii\helpers\ArrayHelper;
 use infoweb\user\models\Profile;
 
 /**
@@ -17,6 +18,7 @@ class SignupForm extends Model
     public $salutation;
     public $firstname;
     public $name;
+    public $language;
     public $profession;
     public $workplace_type;
     public $workplace_name;
@@ -39,8 +41,10 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['salutation', 'name', 'firstname', 'email', 'address', 'profession', 'username', 'password', 'agree_user_terms', 'read_privacy_policy', 'profession_declaration'], 'required'],
+            [['salutation', 'name', 'firstname', 'email', 'address', 'profession', 'username', 'password', 'agree_user_terms', 'read_privacy_policy', 'profession_declaration', 'language'], 'required'],
             [['name', 'firstname', 'email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'username', 'workplace_name', 'responsible_pneumologist'], 'trim'],
+            ['language', 'string', 'max' => 2],
+            ['language', 'default', 'value' => Yii::$app->language],
             // Username has to be unique
             ['username', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'message' => Yii::t('infoweb/user', 'This username has already been taken.')],
             ['username', 'string', 'min' => 3, 'max' => 255],
@@ -76,22 +80,17 @@ class SignupForm extends Model
      */
     public function attributeLabels()
     {
-        return [
-            'username'                          => Yii::t('user', 'Username'),
-            'email'                             => Yii::t('user', 'Email'),
-            'password'                          => Yii::t('user', 'Password'),
-            'password_repeat'                   => Yii::t('infoweb/user', 'Repeat password'),
-            'salutation'                        => Yii::t('infoweb/user', 'Salutation'),
-            'firstname'                         => Yii::t('infoweb/user', 'Firstname'),
-            'name'                              => Yii::t('infoweb/user', 'Name'),
-            'profession'                        => Yii::t('infoweb/user', 'Profession'),
-            'workplace_type'                    => Yii::t('infoweb/user', 'Workplace'),
-            'riziv_number'                      => Yii::t('infoweb/user', 'Riziv number'),
-            'apb_number'                        => Yii::t('infoweb/user', 'APB number'),
-            'agree_user_terms'                  => Yii::t('infoweb/user', 'I agree with the user-terms'),
-            'read_privacy_policy'               => Yii::t('infoweb/user', 'I have read the privacy policy'),
-            'profession_declaration'            => Yii::t('infoweb/user', 'I declare to be a registered doctor, nurse or pharmacist'),
-        ];
+        return ArrayHelper::merge(Profile::attributeLabels(), [
+            'responsible_pneumologist'          => Yii::t('frontend', 'Verantwoordelijke pneumoloog'),
+            'username'                          => Yii::t('frontend', 'Gebruikersnaam'),
+            'email'                             => Yii::t('frontend', 'E-mailadres'),
+            'password'                          => Yii::t('frontend', 'Paswoord'),
+            'password_repeat'                   => Yii::t('frontend', 'Herhaal paswoord'),            
+            'workplace_type'                    => Yii::t('frontend', 'Werkplaats'),
+            'agree_user_terms'                  => Yii::t('frontend', 'Ik ga akkoord met de gebruikersvoorwaarden'),
+            'read_privacy_policy'               => Yii::t('frontend', 'Ik heb de privacy policy gelezen'),
+            'profession_declaration'            => Yii::t('frontend', 'Ik verklaar een geregistreerd geneesheer, verpleegkundige of apotheker te zijn'),
+        ]);
     }
 
     /**
@@ -134,7 +133,8 @@ class SignupForm extends Model
                     'workplace_name'                => (in_array($this->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE])) ? $this->workplace_name : '',
                     'riziv_number'                  => ($this->profession != Profile::PROFESSION_PHARMACIST) ? $this->riziv_number : '',
                     'apb_number'                    => ($this->profession == Profile::PROFESSION_PHARMACIST) ? $this->apb_number : '',
-                    'responsible_pneumologist'      => ($this->profession == Profile::PROFESSION_NURSE) ? $this->responsible_pneumologist : ''
+                    'responsible_pneumologist'      => ($this->profession == Profile::PROFESSION_NURSE) ? $this->responsible_pneumologist : '',
+                    'language'                      => $this->language
                 ]);
                 
                 if ($profile->save(false)) {

@@ -56,8 +56,10 @@ class Profile extends BaseProfile
     public function rules()
     {
         return [
-            [['salutation', 'name', 'firstname', 'public_email', 'address', 'profession'], 'required'],
+            [['salutation', 'name', 'firstname', 'public_email', 'address', 'profession', 'language'], 'required'],
             [['name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'workplace_name', 'responsible_pneumologist'], 'trim'],
+            ['language', 'string', 'max' => 2],
+            ['language', 'default', 'value' => Yii::$app->language],
             ['newsletter', 'number'],
             ['public_email', 'email'],
             // Emailaddress has to be unique
@@ -106,13 +108,13 @@ class Profile extends BaseProfile
     public static function professions()
     {
         return [
-            self::PROFESSION_PNEUMOLOGIST   => Yii::t('infoweb/user', 'Pneumologist'),
-            self::PROFESSION_ALLERGIST      => Yii::t('infoweb/user', 'Allergist'),
-            self::PROFESSION_NKO            => Yii::t('infoweb/user', 'NKO'),
-            self::PROFESSION_INTERNIST      => Yii::t('infoweb/user', 'Internist'),
-            self::PROFESSION_DOCTOR         => Yii::t('infoweb/user', 'Doctor'),
-            self::PROFESSION_NURSE          => Yii::t('infoweb/user', 'Nurse'),
-            self::PROFESSION_PHARMACIST     => Yii::t('infoweb/user', 'Pharmacist')
+            self::PROFESSION_PNEUMOLOGIST   => Yii::t('frontend', 'Pneumoloog'),
+            self::PROFESSION_ALLERGIST      => Yii::t('frontend', 'Allergoloog'),
+            self::PROFESSION_NKO            => Yii::t('frontend', 'NKO'),
+            self::PROFESSION_INTERNIST      => Yii::t('frontend', 'Internist'),
+            self::PROFESSION_DOCTOR         => Yii::t('frontend', 'Huisarts'),
+            self::PROFESSION_NURSE          => Yii::t('frontend', 'Verpleegkundige'),
+            self::PROFESSION_PHARMACIST     => Yii::t('frontend', 'Apotheker')
         ];
     }
     
@@ -121,15 +123,21 @@ class Profile extends BaseProfile
      */
     public function attributeLabels()
     {
-        return ArrayHelper::merge(parent::behaviors(), [
-            'public_email'                      => Yii::t('user', 'Email'),
-            'salutation'                        => Yii::t('infoweb/user', 'Salutation'),
-            'firstname'                         => Yii::t('infoweb/user', 'Firstname'),
-            'name'                              => Yii::t('infoweb/user', 'Name'),
-            'profession'                        => Yii::t('infoweb/user', 'Profession'),
-            'riziv_number'                      => Yii::t('infoweb/user', 'Riziv number'),
-            'apb_number'                        => Yii::t('infoweb/user', 'APB number'),
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'public_email'                      => Yii::t('frontend', 'E-mailadres'),
+            'salutation'                        => Yii::t('frontend', 'Aanspreking'),
+            'firstname'                         => Yii::t('frontend', 'Voornaam'),
+            'name'                              => Yii::t('frontend', 'Naam'),
+            'profession'                        => Yii::t('frontend', 'Beroep'),
+            'riziv_number'                      => Yii::t('frontend', 'Riziv nummer'),
+            'apb_number'                        => Yii::t('frontend', 'APB nummer'),
             'workplace_name'                    => Yii::t('infoweb/user', 'Workplace name'),
+            'language'                          => Yii::t('frontend', 'Taal'),
+            'address'                           => Yii::t('frontend', 'Adres'),
+            'zipcode'                           => Yii::t('frontend', 'Postcode'),
+            'city'                              => Yii::t('frontend', 'Gemeente'),
+            'phone'                             => Yii::t('frontend', 'Telefoon'),
+            'mobile'                            => Yii::t('frontend', 'GSM'),
         ]);
     }
 }
