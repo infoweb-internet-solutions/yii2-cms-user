@@ -4,6 +4,8 @@ namespace infoweb\user\models\frontend;
 use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
+use yii\helpers\Html;
 use infoweb\user\models\Profile;
 
 /**
