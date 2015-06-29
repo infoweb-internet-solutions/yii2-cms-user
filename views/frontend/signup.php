@@ -80,29 +80,18 @@ SignupAsset::register($this);
     </div>
     
     <?php // Legal fields ?>
-    <?= $form
-            ->field($model, 'agree_user_terms', ['enableError' => false])
-            ->checkbox()
-            ->label(
-                Yii::t(
-                    'frontend',
-                    'Ik ga akkoord met de {gebruikersvoorwaarden}',
-                    ['gebruikersvoorwaarden' => Html::a(Yii::t('frontend', 'gebruikersvoorwaarden'), Yii::getAlias('@uploadsBaseUrl/files/gebruiksvoorwaarden.docx'), ['_target' => 'blank'])]
-                ),
-                ['format' => 'raw']
-            ) ?>
-    <?= $form
-            ->field($model, 'read_privacy_policy', ['enableError' => false])
-            ->checkbox()
-            ->label(
-                Yii::t(
-                    'frontend',
-                    'Ik heb de {privacy policy} gelezen',
-                    ['privacy policy' => Html::a(Yii::t('frontend', 'privacy policy'), Yii::getAlias('@uploadsBaseUrl/files/privacy.docx'), ['_target' => 'blank'])]
-                ),
-                ['format' => 'raw']
-            ) ?>
     <?= $form->field($model, 'profession_declaration', ['enableError' => false])->checkbox() ?>
+    
+    <div class="form-group">
+        <?= Yii::t('frontend', 'Uw gegevens worden verwerkt in...') ?>    
+    </div>
+    <div class="form-group">
+        <?= Html::a(Yii::t('frontend', 'Privacybeleid'), Yii::getAlias('@uploadsBaseUrl/files/privacy.docx'), ['_target' => 'blank']) ?>
+        &nbsp;-&nbsp;
+        <?= Html::a(Yii::t('frontend', 'Cookie policy'), Yii::getAlias('@uploadsBaseUrl/files/privacy.docx'), ['_target' => 'blank']) ?>
+        &nbsp;-&nbsp;
+        <?= Html::a(Yii::t('frontend', 'Gebruikersvoorwaarden'), Yii::getAlias('@uploadsBaseUrl/files/gebruiksvoorwaarden.docx'), ['_target' => 'blank']) ?>
+    </div>    
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('frontend', 'Registreren'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

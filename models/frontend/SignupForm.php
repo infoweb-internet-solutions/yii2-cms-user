@@ -33,8 +33,6 @@ class SignupForm extends Model
     public $apb_number;
     public $order_of_pharmacists_number;
     public $responsible_pneumologist;
-    public $agree_user_terms;
-    public $read_privacy_policy;
     public $profession_declaration;
 
     /**
@@ -43,7 +41,7 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['salutation', 'name', 'firstname', 'email', 'address', 'profession', 'username', 'password', 'agree_user_terms', 'read_privacy_policy', 'profession_declaration', 'language'], 'required'],
+            [['salutation', 'name', 'firstname', 'email', 'address', 'profession', 'username', 'password', 'profession_declaration', 'language'], 'required'],
             [['name', 'firstname', 'email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'username', 'workplace_name', 'responsible_pneumologist'], 'trim'],
             ['language', 'string', 'max' => 2],
             ['language', 'default', 'value' => Yii::$app->language],
@@ -53,7 +51,7 @@ class SignupForm extends Model
             ['email', 'email'],
             // Emailaddress has to be unique
             ['email', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'message' => Yii::t('infoweb/user', 'This email address has already been taken.')],
-            [['agree_user_terms', 'read_privacy_policy', 'profession_declaration'], 'compare', 'compareValue' => 1],
+            [['profession_declaration'], 'compare', 'compareValue' => 1],
             // The password must contain at least one number and one symbol
             [['password', 'password_repeat'], 'match', 'pattern' => '/^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/'],
             // Passwords must match
@@ -89,9 +87,7 @@ class SignupForm extends Model
             'password'                          => Yii::t('frontend', 'Paswoord'),
             'password_repeat'                   => Yii::t('frontend', 'Herhaal paswoord'),            
             'workplace_type'                    => Yii::t('frontend', 'Werkplaats'),
-            'agree_user_terms'                  => Yii::t('frontend', 'Ik ga akkoord met de gebruikersvoorwaarden'),
-            'read_privacy_policy'               => Yii::t('frontend', 'Ik heb de privacy policy gelezen'),
-            'profession_declaration'            => Yii::t('frontend', 'Ik verklaar een geregistreerd geneesheer, verpleegkundige of apotheker te zijn'),
+            'profession_declaration'            => Yii::t('frontend', 'Ja, ik verklaar een geregistreerd geneesheer of apotheker te zijn, werkzaam in België'),
         ]);
     }
 
