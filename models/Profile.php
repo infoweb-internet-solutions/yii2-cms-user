@@ -42,13 +42,14 @@ class Profile extends BaseProfile
     const WORKPLACETYPE_PRIVATE     = 'private';
     
     // Profession constants
-    const PROFESSION_PNEUMOLOGIST   = 'pneumologist';
-    const PROFESSION_ALLERGIST      = 'allergist';
-    const PROFESSION_NKO            = 'nko';
-    const PROFESSION_INTERNIST      = 'internist';
-    const PROFESSION_DOCTOR         = 'doctor';
-    const PROFESSION_NURSE          = 'nurse';
-    const PROFESSION_PHARMACIST     = 'pharmacist';
+    const PROFESSION_PNEUMOLOGIST       = 'pneumologist';
+    const PROFESSION_ALLERGIST          = 'allergist';
+    const PROFESSION_NKO                = 'nko';
+    const PROFESSION_INTERNIST          = 'internist';
+    const PROFESSION_DOCTOR             = 'doctor';
+    const PROFESSION_NURSE              = 'nurse';
+    const PROFESSION_PHARMACIST         = 'pharmacist';
+    const PROFESSION_PHYSIOTHERAPIST    = 'physiotherapist';
     
     /**
      * @inheritdoc
@@ -108,13 +109,14 @@ class Profile extends BaseProfile
     public static function professions()
     {
         return [
-            self::PROFESSION_PNEUMOLOGIST   => Yii::t('frontend', 'Pneumoloog'),
-            self::PROFESSION_ALLERGIST      => Yii::t('frontend', 'Allergoloog'),
-            self::PROFESSION_NKO            => Yii::t('frontend', 'NKO'),
-            self::PROFESSION_INTERNIST      => Yii::t('frontend', 'Internist'),
-            self::PROFESSION_DOCTOR         => Yii::t('frontend', 'Huisarts'),
-            self::PROFESSION_NURSE          => Yii::t('frontend', 'Verpleegkundige'),
-            self::PROFESSION_PHARMACIST     => Yii::t('frontend', 'Apotheker')
+            self::PROFESSION_PNEUMOLOGIST       => Yii::t('frontend', 'Pneumoloog'),
+            self::PROFESSION_ALLERGIST          => Yii::t('frontend', 'Allergoloog'),
+            self::PROFESSION_NKO                => Yii::t('frontend', 'NKO'),
+            self::PROFESSION_INTERNIST          => Yii::t('frontend', 'Internist'),
+            self::PROFESSION_DOCTOR             => Yii::t('frontend', 'Huisarts'),
+            //self::PROFESSION_NURSE              => Yii::t('frontend', 'Verpleegkundige'),
+            self::PROFESSION_PHYSIOTHERAPIST    => Yii::t('frontend', 'Kinesist'),
+            self::PROFESSION_PHARMACIST         => Yii::t('frontend', 'Apotheker')
         ];
     }
     

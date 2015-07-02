@@ -19,16 +19,16 @@ SignupAsset::register($this);
     ])->label(false) ?>                
     <div class="row">
         <div class="col-md-12 col-xs-24">
-            <?= $form->field($model, 'name', ['enableError' => false]) ?>
+            <?= $form->field($model, 'name', ['enableError' => false])->label($model->getAttributeLabel('name').' *') ?>
         </div>
         <div class="col-md-12 col-xs-24">
-            <?= $form->field($model, 'firstname', ['enableError' => false]) ?>
+            <?= $form->field($model, 'firstname', ['enableError' => false])->label($model->getAttributeLabel('firstname').' *') ?>
         </div>
     </div>              
-    <?= $form->field($model, 'email') ?>
+    <?= $form->field($model, 'email')->label($model->getAttributeLabel('email').' *') ?>
     <div class="row">
         <div class="col-md-10 col-xs-24">
-            <?= $form->field($model, 'address', ['enableError' => false]) ?>
+            <?= $form->field($model, 'address', ['enableError' => false])->label($model->getAttributeLabel('address').' *') ?>
         </div>
         <div class="col-md-6 col-xs-24">
             <?= $form->field($model, 'zipcode') ?>
@@ -46,11 +46,11 @@ SignupAsset::register($this);
         </div>
     </div>
     
-    <?= $form->field($model, 'language')->dropDownList($languages) ?>
+    <?= $form->field($model, 'language')->dropDownList($languages)->label($model->getAttributeLabel('language').' *') ?>
                     
     <?= $form->field($model, 'profession', ['enableError' => false])->dropDownList($professions, [
         'prompt' => Yii::t('frontend', 'Kies je beroep')
-    ]) ?>
+    ])->label($model->getAttributeLabel('profession').' *') ?>
     
     <?php // Profession specific fields ?>
     <?= $form->field($model, 'responsible_pneumologist')->textInput() ?>
@@ -59,23 +59,38 @@ SignupAsset::register($this);
             <?= $form->field($model, 'workplace_type')->dropDownList([
                 Profile::WORKPLACETYPE_HOSPITAL => Yii::t('frontend', 'Ziekenhuis'),
                 Profile::WORKPLACETYPE_PRIVATE => Yii::t('frontend', 'Privépraktijk')    
-            ]) ?>
+            ])->label($model->getAttributeLabel('workplace_type').' *') ?>
         </div>
         <div class="col-md-18 col-xs-24">
             <?= $form->field($model, 'workplace_name', ['enableError' => false])->label('&nbsp;')->textInput() ?>                            
         </div>
     </div>
-    <?= $form->field($model, 'riziv_number', ['enableError' => false])->textInput() ?>
-    <?= $form->field($model, 'apb_number', ['enableError' => false])->textInput() ?>                
+    <?= $form
+            ->field($model, 'riziv_number', ['enableError' => false])
+            ->textInput()
+            ->label($model->getAttributeLabel('riziv_number').' *')
+            ->hint(Yii::t('frontend', 'Structuur').': X-XXXXX-XX-XXX')
+    ?>
+    <?= $form
+            ->field($model, 'apb_number', ['enableError' => false])
+            ->textInput()
+            ->label($model->getAttributeLabel('apb_number').' *')
+            ->hint(Yii::t('frontend', 'Structuur').': XXXXXX')
+    ?>                
     
     <?php // Account fields ?>
-    <?= $form->field($model, 'username') ?>                
+    <?= $form->field($model, 'username')->label($model->getAttributeLabel('username').' *') ?>                
     <div class="row">
         <div class="col-md-12 col-xs-24">
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form
+                    ->field($model, 'password')
+                    ->passwordInput()
+                    ->label($model->getAttributeLabel('password').' *')
+                    ->hint(Yii::t('frontend', 'Moet uit minstens 6 karakters bestaan waarvan minstens 1 cijfer en 1 van de volgende speciale karakters {characters}', ['characters' => '!@#$%^&*'])) 
+            ?>
         </div>
         <div class="col-md-12 col-xs-24">
-            <?= $form->field($model, 'password_repeat')->passwordInput() ?>
+            <?= $form->field($model, 'password_repeat')->passwordInput()->label($model->getAttributeLabel('password_repeat').' *') ?>
         </div>
     </div>
     

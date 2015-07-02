@@ -8,13 +8,14 @@ var SignupForm = (function() {
     var SignupForm = {};
     
     // Professions
-    SignupForm.PROFESSION_PNEUMOLOGIST = 'pneumologist';
-    SignupForm.PROFESSION_ALLERGIST = 'allergist';
-    SignupForm.PROFESSION_NKO = 'nko';
-    SignupForm.PROFESSION_INTERNIST = 'internist';
-    SignupForm.PROFESSION_DOCTOR = 'doctor';
-    SignupForm.PROFESSION_NURSE = 'nurse';
-    SignupForm.PROFESSION_PHARMACIST = 'pharmacist';
+    SignupForm.PROFESSION_PNEUMOLOGIST      = 'pneumologist';
+    SignupForm.PROFESSION_ALLERGIST         = 'allergist';
+    SignupForm.PROFESSION_NKO               = 'nko';
+    SignupForm.PROFESSION_INTERNIST         = 'internist';
+    SignupForm.PROFESSION_DOCTOR            = 'doctor';
+    SignupForm.PROFESSION_NURSE             = 'nurse';
+    SignupForm.PROFESSION_PHARMACIST        = 'pharmacist';
+    SignupForm.PROFESSION_PHYSIOTHERAPIST   = 'physiotherapist';
 
     SignupForm.init = function() {
         SignupForm.registerEventHandlers();
