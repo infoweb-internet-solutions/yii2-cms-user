@@ -133,13 +133,15 @@ class Profile extends BaseProfile
             'profession'                        => Yii::t('frontend', 'Beroep'),
             'riziv_number'                      => Yii::t('frontend', 'Riziv nummer'),
             'apb_number'                        => Yii::t('frontend', 'APB nummer'),
-            'workplace_name'                    => Yii::t('infoweb/user', 'Workplace name'),
+            'workplace_name'                    => Yii::t('frontend', 'Werkplaats'),
             'language'                          => Yii::t('frontend', 'Taal'),
             'address'                           => Yii::t('frontend', 'Adres'),
             'zipcode'                           => Yii::t('frontend', 'Postcode'),
             'city'                              => Yii::t('frontend', 'Gemeente'),
             'phone'                             => Yii::t('frontend', 'Telefoon'),
             'mobile'                            => Yii::t('frontend', 'GSM'),
+            'responsible_pneumologist'          => Yii::t('frontend', 'Verantwoordelijke pneumoloog'),
+            'workplace_type'                    => Yii::t('frontend', 'Werkplaats'),
         ]);
     }
 }
