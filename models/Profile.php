@@ -57,7 +57,7 @@ class Profile extends BaseProfile
     public function rules()
     {
         return [
-            [['salutation', 'name', 'firstname', 'public_email', 'address', 'profession', 'language'], 'required'],
+            [['salutation', 'name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'profession', 'language'], 'required'],
             [['name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'workplace_name', 'responsible_pneumologist'], 'trim'],
             ['language', 'string', 'max' => 2],
             ['language', 'default', 'value' => Yii::$app->language],
@@ -80,7 +80,9 @@ class Profile extends BaseProfile
             // All the rest needs a riziv number
             ['riziv_number', 'required', 'when' => function($model) {
                 return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, '']);
-            }]
+            }],
+            ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
+            ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
         ];
     }
     

@@ -31,10 +31,10 @@ SignupAsset::register($this);
             <?= $form->field($model, 'address', ['enableError' => false])->label($model->getAttributeLabel('address').' *') ?>
         </div>
         <div class="col-md-6 col-xs-24">
-            <?= $form->field($model, 'zipcode') ?>
+            <?= $form->field($model, 'zipcode', ['enableError' => false])->label($model->getAttributeLabel('zipcode').' *') ?>
         </div>
         <div class="col-md-8 col-xs-24">
-            <?= $form->field($model, 'city') ?>
+            <?= $form->field($model, 'city', ['enableError' => false])->label($model->getAttributeLabel('city').' *') ?>
         </div>
     </div>
     <div class="row">

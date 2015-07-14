@@ -41,7 +41,7 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['salutation', 'name', 'firstname', 'email', 'address', 'profession', 'username', 'password', 'profession_declaration', 'language'], 'required'],
+            [['salutation', 'name', 'firstname', 'email', 'address', 'zipcode', 'city', 'profession', 'username', 'password', 'profession_declaration', 'language'], 'required'],
             [['name', 'firstname', 'email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'username', 'workplace_name', 'responsible_pneumologist'], 'trim'],
             ['language', 'string', 'max' => 2],
             ['language', 'default', 'value' => Yii::$app->language],
@@ -71,7 +71,9 @@ class SignupForm extends Model
             // All the rest needs a riziv number
             ['riziv_number', 'required', 'when' => function($model) {
                 return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, '']);
-            }]
+            }],
+            ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
+            ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
         ];
     }
     
