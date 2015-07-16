@@ -79,7 +79,12 @@ return [
     ...
     'as access' => [
         'class' => 'infoweb\user\components\AccessControl',
-        'user' => 'infoweb\user\models\WebUser'
+        'user' => 'infoweb\user\models\WebUser',
+        'allowActions' => [
+            'user/recovery/*',
+            'user/security/logout',
+            'user/registration/*'
+        ],
     ],
 ];
 ```
