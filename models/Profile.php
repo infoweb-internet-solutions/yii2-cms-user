@@ -39,7 +39,6 @@ class Profile extends BaseProfile
     public function rules()
     {
         return [
-            [['name'], 'required'],
             [['name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'fax'], 'trim'],
             ['language', 'string', 'max' => 2],
             ['language', 'default', 'value' => Yii::$app->language],
