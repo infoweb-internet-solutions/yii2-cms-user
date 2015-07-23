@@ -2,11 +2,11 @@
 
 namespace infoweb\user\components;
 
+use yii\di\Instance;
 use mdm\admin\components\AccessControl as BaseAccessControl;
-//use infoweb\user\models\WebUser as User;
 
 class AccessControl extends BaseAccessControl
-{
+{    
     public function init()
     {
         if (defined('STDIN'))
