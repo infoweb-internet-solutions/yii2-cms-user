@@ -114,7 +114,7 @@ class SettingsController extends BaseController
                 }*/    
             }
                         
-            \Yii::$app->getSession()->setFlash('success', \Yii::t('user', 'Profile settings have been successfully saved'));
+            \Yii::$app->getSession()->setFlash('success', \Yii::t('app', '"{item}" has been updated', ['item' => Yii::$app->user->identity->username]));
             return $this->refresh();
         }
 
