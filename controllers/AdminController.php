@@ -100,6 +100,10 @@ class AdminController extends BaseAdminController
         // Superadmin can only assign the 'Superadmin' role
         if (isset($roles['Superadmin']) && !\Yii::$app->user->can('Superadmin'))
             unset($roles['Superadmin']);
+        
+        // Remove the 'frontendUser' role if it exists
+        if (isset($roles['frontendUser']))
+            unset($roles['frontendUser']);
 
         return $this->render('create', [
             'user' => $user,
@@ -143,6 +147,10 @@ class AdminController extends BaseAdminController
         // Superadmin can only assign the 'Superadmin' role
         if (isset($roles['Superadmin']) && !\Yii::$app->user->can('Superadmin'))
             unset($roles['Superadmin']);
+        
+        // Remove the 'frontendUser' role if it exists
+        if (isset($roles['frontendUser']))
+            unset($roles['frontendUser']);
 
         // Get all assigned roles for this user
         $activeRoles = ArrayHelper::map($manager->getAssignments($model->id), 'roleName', 'roleName');
