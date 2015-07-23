@@ -11,7 +11,10 @@
 
 namespace infoweb\user\models;
 
+use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
+use yii\db\ActiveRecord;
 use dektrium\user\models\Profile as BaseProfile;
 
 /**
@@ -30,6 +33,23 @@ use dektrium\user\models\Profile as BaseProfile;
  */
 class Profile extends BaseProfile
 {
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
+                ],
+                'value' => function() { return time(); },
+            ],
+            'image' => [
+                'class' => 'infoweb\cms\behaviors\ImageBehave',
+            ],
+        ]);
+    }
+    
     /**
      * @return \yii\db\ActiveQueryInterface
      */
