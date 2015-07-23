@@ -33,6 +33,22 @@ use dektrium\user\models\Profile as BaseProfile;
  */
 class Profile extends BaseProfile
 {
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['name'], 'required'],
+            [['name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'fax'], 'trim'],
+            ['language', 'string', 'max' => 2],
+            ['language', 'default', 'value' => Yii::$app->language],
+            ['public_email', 'email'],
+            // Emailaddress has to be unique
+            ['public_email', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'targetAttribute' => 'email', 'message' => Yii::t('infoweb/user', 'This email address has already been taken.')],
+        ];
+    }
+
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
@@ -47,6 +63,25 @@ class Profile extends BaseProfile
             'image' => [
                 'class' => 'infoweb\cms\behaviors\ImageBehave',
             ],
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'public_email'                      => Yii::t('infoweb/user', 'Email'),
+            'firstname'                         => Yii::t('infoweb/user', 'Firstname'),
+            'name'                              => Yii::t('infoweb/user', 'Name'),            
+            'language'                          => Yii::t('infoweb/user', 'Language'),
+            'address'                           => Yii::t('infoweb/user', 'Address'),
+            'zipcode'                           => Yii::t('infoweb/user', 'Zipcode'),
+            'city'                              => Yii::t('infoweb/user', 'City'),
+            'phone'                             => Yii::t('infoweb/user', 'Phone'),
+            'mobile'                            => Yii::t('infoweb/user', 'Mobile'),
+            'fax'                               => Yii::t('infoweb/user', 'Fax'),
         ]);
     }
     
