@@ -62,7 +62,6 @@ return [
                 'User' => 'infoweb\user\models\User',
                 'UserSearch' => 'infoweb\user\models\UserSearch',
                 'Profile' => 'infoweb\user\models\Profile',
-                'WebUser' => 'infoweb\user\models\WebUser',
             ],
             'controllerMap' => [
                 'admin' => 'infoweb\user\controllers\AdminController',
