@@ -65,7 +65,8 @@ return [
             ],
             'controllerMap' => [
                 'admin' => 'infoweb\user\controllers\AdminController',
-                'settings' => 'infoweb\user\controllers\SettingsController'
+                'settings' => 'infoweb\user\controllers\SettingsController',
+                'security' => 'infoweb\user\controllers\SecurityController',
             ],
             'modules' => [
                 // Register the custom module as a submodule
