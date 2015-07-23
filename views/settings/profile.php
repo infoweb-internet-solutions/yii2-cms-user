@@ -55,6 +55,22 @@ if (strlen($model->user->getImage()->name) > 0) {
 
                 <?= $form->field($model, 'name') ?>
                 
+                <?= $form->field($model, 'firstname') ?>
+                
+                <?= $form->field($model, 'public_email') ?>
+                
+                <?= $form->field($model, 'address') ?>
+                
+                <?= $form->field($model, 'zipcode') ?>
+                
+                <?= $form->field($model, 'city') ?>
+                
+                <?= $form->field($model, 'phone') ?>
+                
+                <?= $form->field($model, 'mobile') ?>
+                
+                <?= $form->field($model, 'fax') ?>
+                
                 <?= $form->field($image, 'image[]')->widget(FileInput::classname(), [
                     'options' => [
                         'accept' => 'image/*',

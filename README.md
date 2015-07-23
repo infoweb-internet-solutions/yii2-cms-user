@@ -62,11 +62,11 @@ return [
                 'User' => 'infoweb\user\models\User',
                 'UserSearch' => 'infoweb\user\models\UserSearch',
                 'Profile' => 'infoweb\user\models\Profile',
-                'WebUser' => 'infoweb\user\models\WebUser',
             ],
             'controllerMap' => [
                 'admin' => 'infoweb\user\controllers\AdminController',
-                'settings' => 'infoweb\user\controllers\SettingsController'
+                'settings' => 'infoweb\user\controllers\SettingsController',
+                'security' => 'infoweb\user\controllers\SecurityController',
             ],
             'modules' => [
                 // Register the custom module as a submodule

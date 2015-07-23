@@ -11,7 +11,10 @@
 
 namespace infoweb\user\models;
 
+use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
+use yii\db\ActiveRecord;
 use dektrium\user\models\Profile as BaseProfile;
 
 /**
@@ -30,6 +33,57 @@ use dektrium\user\models\Profile as BaseProfile;
  */
 class Profile extends BaseProfile
 {
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'fax'], 'trim'],
+            ['language', 'string', 'max' => 2],
+            ['language', 'default', 'value' => Yii::$app->language],
+            ['public_email', 'email'],
+            // Emailaddress has to be unique
+            ['public_email', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'targetAttribute' => 'email', 'message' => Yii::t('infoweb/user', 'This email address has already been taken.')],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at',
+                ],
+                'value' => function() { return time(); },
+            ],
+            'image' => [
+                'class' => 'infoweb\cms\behaviors\ImageBehave',
+            ],
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'public_email'                      => Yii::t('infoweb/user', 'Email'),
+            'firstname'                         => Yii::t('infoweb/user', 'Firstname'),
+            'name'                              => Yii::t('infoweb/user', 'Name'),            
+            'language'                          => Yii::t('infoweb/user', 'Language'),
+            'address'                           => Yii::t('infoweb/user', 'Address'),
+            'zipcode'                           => Yii::t('infoweb/user', 'Zipcode'),
+            'city'                              => Yii::t('infoweb/user', 'City'),
+            'phone'                             => Yii::t('infoweb/user', 'Phone'),
+            'mobile'                            => Yii::t('infoweb/user', 'Mobile'),
+            'fax'                               => Yii::t('infoweb/user', 'Fax'),
+        ]);
+    }
+    
     /**
      * @return \yii\db\ActiveQueryInterface
      */

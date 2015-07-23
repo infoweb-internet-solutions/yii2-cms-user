@@ -11,13 +11,11 @@
 
 namespace infoweb\user\controllers;
 
-use dektrium\user\controllers\AdminController as BaseAdminController;
-
-
-use mdm\admin\models;
-use yii\helpers\ArrayHelper;
-use infoweb\user\models\User;
 use Yii;
+use yii\helpers\ArrayHelper;
+use dektrium\user\controllers\AdminController as BaseAdminController;
+use mdm\admin\models;
+use infoweb\user\models\User;
 
 /**
  * AdminController allows you to administrate users.
@@ -102,6 +100,10 @@ class AdminController extends BaseAdminController
         // Superadmin can only assign the 'Superadmin' role
         if (isset($roles['Superadmin']) && !\Yii::$app->user->can('Superadmin'))
             unset($roles['Superadmin']);
+        
+        // Remove the 'frontendUser' role if it exists
+        if (isset($roles['frontendUser']))
+            unset($roles['frontendUser']);
 
         return $this->render('create', [
             'user' => $user,
@@ -145,6 +147,10 @@ class AdminController extends BaseAdminController
         // Superadmin can only assign the 'Superadmin' role
         if (isset($roles['Superadmin']) && !\Yii::$app->user->can('Superadmin'))
             unset($roles['Superadmin']);
+        
+        // Remove the 'frontendUser' role if it exists
+        if (isset($roles['frontendUser']))
+            unset($roles['frontendUser']);
 
         // Get all assigned roles for this user
         $activeRoles = ArrayHelper::map($manager->getAssignments($model->id), 'roleName', 'roleName');

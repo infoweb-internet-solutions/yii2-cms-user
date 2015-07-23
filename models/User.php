@@ -49,6 +49,21 @@ use dektrium\user\helpers\Password;
  */
 class User extends BaseUser
 {
+    // Scope constants
+    const SCOPE_BACKEND     = 'backend';
+    const SCOPE_FRONTEND    = 'frontend';
+    const SCOPE_BOTH        = 'both';
+    
+    public function rules()
+    {
+        $rules = parent::rules();
+        
+        // Update the 'usernameLength' rule
+        $rules['usernameLength'] = ['username', 'string', 'min' => 3, 'max' => 255];
+        
+        return $rules;    
+    }
+    
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
