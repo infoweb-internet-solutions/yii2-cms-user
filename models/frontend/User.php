@@ -8,28 +8,28 @@ use infoweb\user\models\User as BaseUser;
 use infoweb\user\models\Profile;
 
 class User extends BaseUser
-{   
+{
     public $identityClass = 'infoweb\user\models\User';
-    
+
     public $loginUrl = ['site/login'];
-    
+
     /** @inheritdoc */
     public function scenarios()
     {
         return ActiveRecord::scenarios();
-    }        
-    
+    }
+
     /**
      * Custom implementation because the parent class created the Profile object
      * in this function.
-     * 
+     *
      * @inheritdoc
      */
     public function afterSave($insert, $changedAttributes)
     {
         ActiveRecord::afterSave($insert, $changedAttributes);
-    } 
-    
+    }
+
     /**
      * Validates password
      *
@@ -40,7 +40,7 @@ class User extends BaseUser
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
-    
+
     /**
      * Finds user by username
      *
@@ -51,15 +51,15 @@ class User extends BaseUser
     {
         return static::findOne(['username' => $username, 'scope' => [self::SCOPE_FRONTEND, self::SCOPE_BOTH]]);
     }
-    
-     /**
+
+    /**
      * @inheritdoc
      */
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id, 'scope' => [self::SCOPE_FRONTEND, self::SCOPE_BOTH]]);
     }
-    
+
     /**
      * Finds user by password reset token
      *
@@ -94,12 +94,12 @@ class User extends BaseUser
         $timestamp = (int) end($parts);
         return $timestamp + $expire >= time();
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getProfile()
     {
         return $this->hasOne(Profile::className(), ['user_id' => 'id']);
-    }   
+    }
 }
