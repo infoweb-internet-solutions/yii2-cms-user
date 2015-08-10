@@ -92,6 +92,9 @@ SignupAsset::register($this);
         <div class="col-md-12 col-xs-24">
             <?= $form->field($model, 'password_repeat')->passwordInput()->label($model->getAttributeLabel('password_repeat').' *') ?>
         </div>
+        <div class="col-md-24 col-xs-24">
+            <p class="help-block">* <?= Yii::t('frontend', 'Verplichte gegevens') ?></p>
+        </div>
     </div>
     
     <?php // Legal fields ?>
