@@ -101,11 +101,11 @@ SignupAsset::register($this);
         <?= Yii::t('frontend', 'Uw gegevens worden verwerkt in...') ?>    
     </div>
     <div class="form-group">
-        <?= Html::a(Yii::t('frontend', 'Privacybeleid'), Yii::getAlias('@uploadsBaseUrl/files/privacy.pdf'), ['target' => '_blank']) ?>
+        <?= Html::a(Yii::t('frontend', 'Privacybeleid'), Yii::getAlias('@uploadsBaseUrl/files/'.Yii::t('frontend', 'bestandsnaam privacy policy')), ['target' => '_blank']) ?>
         &nbsp;-&nbsp;
-        <?= Html::a(Yii::t('frontend', 'Cookie policy'), Yii::getAlias('@uploadsBaseUrl/files/privacy.pdf'), ['target' => '_blank']) ?>
+        <?= Html::a(Yii::t('frontend', 'Cookie policy'), Yii::getAlias('@uploadsBaseUrl/files/'.Yii::t('frontend', 'bestandsnaam privacy policy')), ['target' => '_blank']) ?>
         &nbsp;-&nbsp;
-        <?= Html::a(Yii::t('frontend', 'Gebruikersvoorwaarden'), Yii::getAlias('@uploadsBaseUrl/files/gebruiksvoorwaarden.pdf'), ['target' => '_blank']) ?>
+        <?= Html::a(Yii::t('frontend', 'Gebruikersvoorwaarden'), Yii::getAlias('@uploadsBaseUrl/files/'.Yii::t('frontend', 'bestandsnaam gebruiksvoorwaarden')), ['target' => '_blank']) ?>
     </div>    
 
     <div class="form-group">
