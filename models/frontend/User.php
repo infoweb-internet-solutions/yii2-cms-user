@@ -111,5 +111,14 @@ class User extends BaseUser
     {
         return $this->hasMany(AgendaItem::className(), ['id' => 'agenda_item_id'])
                     ->viaTable('user_agenda_items', ['user_id' => 'id']);
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAgendaRegistrations()
+    {
+        return $this->hasMany(AgendaItem::className(), ['id' => 'agenda_item_id'])
+                    ->viaTable('user_agenda_registrations', ['user_id' => 'id']);
     }   
 }
