@@ -146,4 +146,12 @@ class Profile extends BaseProfile
             'workplace_type'                    => Yii::t('frontend', 'Werkplaats'),
         ]);
     }
+
+    public function salutations()
+    {
+        return [
+            self::SALUTATION_MR => Yii::t('frontend', 'Dhr.'),
+            self::SALUTATION_MS => Yii::t('frontend', 'Mevr.')
+        ];
+    }
 }
