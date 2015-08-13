@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use infoweb\user\models\Profile;
+use infoweb\email\models\Email;
 
 /**
  * Signup form
@@ -34,6 +35,11 @@ class SignupForm extends Model
     public $order_of_pharmacists_number;
     public $responsible_pneumologist;
     public $profession_declaration;
+    
+    // Attributes for the mail that is send when the form is submitted
+    public $body;
+    public $subject;
+    public $to;
 
     /**
      * @inheritdoc
@@ -145,5 +151,39 @@ class SignupForm extends Model
         }
 
         return null;
+    }
+
+    /**
+     * Sends an email to the specified email address using the information collected by this model.
+     *
+     * @return boolean whether the email was sent
+     */
+    public function sendEmail()
+    {
+        return Yii::$app->mailer->compose()
+            ->setTo($this->to)
+            ->setFrom([$this->email => "{$this->firstname} {$this->name}"])
+            ->setSubject($this->subject)
+            ->setHtmlBody($this->body)
+            ->send();
+    }
+    
+    /**
+     * Save's the form email to the database
+     * 
+     * @return  boolean
+     */
+    public function saveEmail()
+    {
+        $email = new Email([
+            'language'          => Yii::$app->language,
+            'form'              => 'Registratie',
+            'from'              => $this->email,
+            'to'                => $this->to,
+            'subject'           => $this->subject,
+            'message'           => $this->body,
+        ]);
+
+        return $email->save();
     }
 }

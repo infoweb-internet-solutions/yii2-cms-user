@@ -6,6 +6,17 @@ use infoweb\user\assets\frontend\SignupAsset;
 
 SignupAsset::register($this);
 ?>
+<?php if (Yii::$app->getSession()->hasFlash('signup')): ?>
+<div class="alert alert-success">
+    <?= Yii::$app->getSession()->getFlash('signup') ?>
+</div>
+<?php endif; ?>
+
+<?php if (Yii::$app->getSession()->hasFlash('signup-error')): ?>
+<div class="alert alert-danger">
+    <?= Yii::$app->getSession()->getFlash('signup-error') ?>
+</div>
+<?php endif; ?>
 <?php $form = ActiveForm::begin([
     'id' => 'form-signup',
     'enableAjaxValidation' => true,
