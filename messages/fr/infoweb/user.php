@@ -26,8 +26,8 @@ return [
     'Select your language' => '',
     'Select your profession' => '',
     'Select your profession.' => '',
-    'This email address has already been taken.' => '',
-    'This username has already been taken.' => '',
+    'This email address has already been taken.' => 'Cette adresse email a déjà été prise',
+    'This username has already been taken.' => 'Ce nom d\'utilisateur est déjà pris',
     'Workplace' => '',
     'Workplace name' => '',
 ];
