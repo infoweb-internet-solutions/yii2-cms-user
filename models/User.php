@@ -15,6 +15,7 @@ use Yii;
 use yii\helpers\ArrayHelper;
 use dektrium\user\models\User as BaseUser;
 use dektrium\user\helpers\Password;
+use dektrium\user\models\Token;
 
 /**
  * User ActiveRecord model.
@@ -103,5 +104,17 @@ class User extends BaseUser
         }
 
         return parent::beforeSave($insert);
+    }
+    
+    /**
+     * Finds a token by user id and code.
+     *
+     * @param mixed $condition
+     *
+     * @return ActiveQuery
+     */
+    public function getPasswordResetToken()
+    {
+        return $this->finder->tokenQuery->where(['user_id' => $this->id, 'type' => Token::TYPE_RECOVERY]);
     }
 }
