@@ -47,10 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'new_password')->passwordInput() ?>
 
-                <hr/>
-
-                <?= $form->field($model, 'current_password')->passwordInput() ?>
-
                 <div class="form-group">
                     <div>
                         <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?><br>
