@@ -80,6 +80,7 @@ class AdminController extends BaseAdminController
     public function actionCreate()
     {
         $manager = \Yii::$app->authManager;
+        $post = \Yii::$app->request->post();
         
         /** @var User $user */
         $user = Yii::createObject([
@@ -89,7 +90,16 @@ class AdminController extends BaseAdminController
 
         $this->performAjaxValidation($user);
 
-        if ($user->load(Yii::$app->request->post()) && $user->create()) {
+        if ($user->load($post) && $user->create()) {
+            
+            foreach ($post['roles'] as $role)
+            {
+                // Get role object
+                $role = $manager->getRole($role);
+                // Assign the role
+                $manager->assign($role, $user->id);
+            }            
+            
             Yii::$app->getSession()->setFlash('success', Yii::t('user', 'User has been created'));
             return $this->redirect(['update', 'id' => $user->id]);
         }
