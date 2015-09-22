@@ -186,4 +186,17 @@ class SignupForm extends Model
 
         return $email->save();
     }
+    
+    public function sendConfirmationEmail()
+    {
+        $subject = Yii::t('frontend', 'Welkom op smallairways.be');
+        $body = Yii::$app->mailer->render('@common/mail/signupConfirmation', ['post' => (object) Yii::$app->request->post('SignupForm')], 'layouts/html');
+        
+        return Yii::$app->mailer->compose()
+                        ->setTo($this->email)
+                        ->setFrom($this->to)
+                        ->setSubject($subject)
+                        ->setHtmlBody($body)
+                        ->send();
+    }
 }
