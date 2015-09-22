@@ -116,7 +116,7 @@ class Profile extends BaseProfile
             self::PROFESSION_NKO                => Yii::t('frontend', 'NKO'),
             self::PROFESSION_INTERNIST          => Yii::t('frontend', 'Internist'),
             self::PROFESSION_DOCTOR             => Yii::t('frontend', 'Huisarts'),
-            self::PROFESSION_NURSE              => Yii::t('frontend', 'Verpleegkundige'),
+            //self::PROFESSION_NURSE              => Yii::t('frontend', 'Verpleegkundige'),
             self::PROFESSION_PHYSIOTHERAPIST    => Yii::t('frontend', 'Kinesist'),
             self::PROFESSION_PHARMACIST         => Yii::t('frontend', 'Apotheker')
         ];
