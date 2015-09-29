@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <div class="form-group field-user-role">
             <label for="user-role" class="control-label"><?= Yii::t('app', 'Role') ?></label>
-            <?= Html::dropDownList('roles', $activeRoles, ArrayHelper::map($roles, 'name', 'description'), ['class' => 'form-control', 'multiple' => 'true', 'style' => 'height: 150px;']) ?>
+            <?= Html::dropDownList('roles', $activeRoles, ArrayHelper::map($roles, 'name', 'name'), ['class' => 'form-control', 'multiple' => 'true', 'style' => 'height: 150px;']) ?>
         </div>
 
         <div class="form-group">
