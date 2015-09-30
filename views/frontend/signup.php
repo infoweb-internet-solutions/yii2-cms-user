@@ -23,6 +23,8 @@ SignupAsset::register($this);
     'enableClientValidation' => false
 ]); ?>
 
+    <?= $form->field($model, 'ref')->hiddenInput()->label(false) ?>
+    
     <?php // User specific fields ?>
     <?= $form->field($model, 'salutation')->inline()->radioList([
         Profile::SALUTATION_MR => Yii::t('frontend', 'Dhr.'),

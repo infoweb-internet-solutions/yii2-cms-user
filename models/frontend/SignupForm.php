@@ -35,6 +35,7 @@ class SignupForm extends Model
     public $order_of_pharmacists_number;
     public $responsible_pneumologist;
     public $profession_declaration;
+    public $ref;
     
     // Attributes for the mail that is send when the form is submitted
     public $body;
@@ -80,6 +81,7 @@ class SignupForm extends Model
             }],
             ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
             ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
+            ['ref', 'in', 'range' => ['sanmax', 'none']]
         ];
     }
     
@@ -175,9 +177,10 @@ class SignupForm extends Model
      */
     public function saveEmail()
     {
+        $form = 'Registratie' . (($this->ref == 'sanmax') ? ' - Sanmax' : '');
         $email = new Email([
             'language'          => Yii::$app->language,
-            'form'              => 'Registratie',
+            'form'              => $form,
             'from'              => $this->email,
             'to'                => $this->to,
             'subject'           => $this->subject,
