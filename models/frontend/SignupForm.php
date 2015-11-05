@@ -36,7 +36,7 @@ class SignupForm extends Model
     public $responsible_pneumologist;
     public $profession_declaration;
     public $ref;
-    
+
     // Attributes for the mail that is send when the form is submitted
     public $body;
     public $subject;
@@ -84,7 +84,7 @@ class SignupForm extends Model
             ['ref', 'in', 'range' => ['sanmax', 'none']]
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -95,7 +95,7 @@ class SignupForm extends Model
             'username'                          => Yii::t('frontend', 'Gebruikersnaam'),
             'email'                             => Yii::t('frontend', 'E-mailadres'),
             'password'                          => Yii::t('frontend', 'Paswoord'),
-            'password_repeat'                   => Yii::t('frontend', 'Herhaal paswoord'),            
+            'password_repeat'                   => Yii::t('frontend', 'Herhaal paswoord'),
             'workplace_type'                    => Yii::t('frontend', 'Werkplaats'),
             'profession_declaration'            => Yii::t('frontend', 'Ja, ik verklaar een geregistreerd geneesheer of apotheker te zijn, werkzaam in België'),
         ]);
@@ -109,9 +109,9 @@ class SignupForm extends Model
     public function signup()
     {
         if ($this->validate()) {
-            
+
             $transaction = Yii::$app->db->beginTransaction();
-            
+
             // Create the user
             $user = new User([
                 'username'          => $this->username,
@@ -121,9 +121,9 @@ class SignupForm extends Model
                 'scope'             => User::SCOPE_FRONTEND,
                 'confirmed_at'      => time()
             ]);
-            
+
             if ($user->save()) {
-                
+
                 // Create the profile
                 $profile = new Profile([
                     'user_id'                       => $user->id,
@@ -144,12 +144,12 @@ class SignupForm extends Model
                     'responsible_pneumologist'      => ($this->profession == Profile::PROFESSION_NURSE) ? $this->responsible_pneumologist : '',
                     'language'                      => $this->language
                 ]);
-                
+
                 if ($profile->save(false)) {
                     $transaction->commit();
                     return $user;
-                }                                    
-            }            
+                }
+            }
         }
 
         return null;
@@ -169,10 +169,10 @@ class SignupForm extends Model
             ->setHtmlBody($this->body)
             ->send();
     }
-    
+
     /**
      * Save's the form email to the database
-     * 
+     *
      * @return  boolean
      */
     public function saveEmail()
@@ -184,22 +184,39 @@ class SignupForm extends Model
             'from'              => $this->email,
             'to'                => $this->to,
             'subject'           => $this->subject,
-            'message'           => $this->body,
+            'message'           => $this->body
         ]);
 
         return $email->save();
     }
-    
+
     public function sendConfirmationEmail()
     {
         $subject = Yii::t('frontend', 'Welkom op smallairways.be');
         $body = Yii::$app->mailer->render('@common/mail/signupConfirmation', ['post' => (object) Yii::$app->request->post('SignupForm')], 'layouts/html');
-        
-        return Yii::$app->mailer->compose()
-                        ->setTo($this->email)
-                        ->setFrom($this->to)
-                        ->setSubject($subject)
-                        ->setHtmlBody($body)
-                        ->send();
+
+        $sent = Yii::$app->mailer->compose()
+                    ->setTo($this->email)
+                    ->setFrom($this->to)
+                    ->setSubject($subject)
+                    ->setHtmlBody($body)
+                    ->send();
+
+        // Save the email
+        if ($sent) {
+            $form = 'Registratie' . (($this->ref == 'sanmax') ? ' - Sanmax' : '');
+            $email = new Email([
+                'language'          => Yii::$app->language,
+                'form'              => $form,
+                'from'              => $this->to,
+                'to'                => $this->email,
+                'subject'           => $subject,
+                'message'           => $body,
+                'action'            => Email::ACTION_SENT
+            ]);
+            $email->save();
+        }
+
+        return $sent;
     }
 }
