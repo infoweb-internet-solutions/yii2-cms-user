@@ -49,6 +49,10 @@ class Profile extends BaseProfile
             ['workplace_name', 'required', 'when' => function($model) {
                 return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
             }],
+            // A nurse must have a responsible pneumologist
+            ['responsible_pneumologist', 'required', 'when' => function($model) {
+                return in_array($model->profession, [Profile::PROFESSION_NURSE]);
+            }],
             // Pharmacists need an APB number
             ['apb_number', 'required', 'when' => function($model) {
                 return $model->profession == Profile::PROFESSION_PHARMACIST;
