@@ -1,14 +1,4 @@
 <?php
-
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace infoweb\user\models;
 
 use Yii;
@@ -17,30 +7,16 @@ use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use dektrium\user\models\Profile as BaseProfile;
 
-/**
- * This is the model class for table "profile".
- *
- * @property integer $user_id
- * @property string  $name
- * @property string  $public_email
- * @property string  $gravatar_email
- * @property string  $gravatar_id
- * @property string  $location
- * @property string  $website
- * @property string  $bio
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com
- */
 class Profile extends BaseProfile
 {
     // Salutation constants
     const SALUTATION_MR = 'mr';
     const SALUTATION_MS = 'ms';
-    
+
     // Workplacetype constants
     const WORKPLACETYPE_HOSPITAL    = 'hospital';
     const WORKPLACETYPE_PRIVATE     = 'private';
-    
+
     // Profession constants
     const PROFESSION_PNEUMOLOGIST       = 'pneumologist';
     const PROFESSION_ALLERGIST          = 'allergist';
@@ -50,7 +26,7 @@ class Profile extends BaseProfile
     const PROFESSION_NURSE              = 'nurse';
     const PROFESSION_PHARMACIST         = 'pharmacist';
     const PROFESSION_PHYSIOTHERAPIST    = 'physiotherapist';
-    
+
     /**
      * @inheritdoc
      */
@@ -79,13 +55,13 @@ class Profile extends BaseProfile
             }],
             // All the rest needs a riziv number
             ['riziv_number', 'required', 'when' => function($model) {
-                return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, '']);
+                return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, Profile::PROFESSION_NURSE, '']);
             }],
             ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
             ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
         ];
     }
-    
+
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
@@ -102,10 +78,10 @@ class Profile extends BaseProfile
             ],
         ]);
     }
-    
+
     /**
      * Returns the professions
-     * 
+     *
      * @return  array
      */
     public static function professions()
@@ -116,12 +92,12 @@ class Profile extends BaseProfile
             self::PROFESSION_NKO                => Yii::t('frontend', 'NKO'),
             self::PROFESSION_INTERNIST          => Yii::t('frontend', 'Internist'),
             self::PROFESSION_DOCTOR             => Yii::t('frontend', 'Huisarts'),
-            //self::PROFESSION_NURSE              => Yii::t('frontend', 'Verpleegkundige'),
+            self::PROFESSION_NURSE              => Yii::t('frontend', 'Verpleegkundige'),
             self::PROFESSION_PHYSIOTHERAPIST    => Yii::t('frontend', 'Kinesist'),
             self::PROFESSION_PHARMACIST         => Yii::t('frontend', 'Apotheker')
         ];
     }
-    
+
     /**
      * @inheritdoc
      */

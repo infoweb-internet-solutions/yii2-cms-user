@@ -71,13 +71,17 @@ class SignupForm extends Model
             ['workplace_name', 'required', 'when' => function($model) {
                 return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
             }],
+            // A nurse must have a responsible pneumologist
+            ['responsible_pneumologist', 'required', 'when' => function($model) {
+                return in_array($model->profession, [Profile::PROFESSION_NURSE]);
+            }],
             // Pharmacists need an APB number
             ['apb_number', 'required', 'when' => function($model) {
                 return $model->profession == Profile::PROFESSION_PHARMACIST;
             }],
             // All the rest needs a riziv number
             ['riziv_number', 'required', 'when' => function($model) {
-                return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, '']);
+                return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, Profile::PROFESSION_NURSE, '']);
             }],
             ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
             ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
@@ -90,7 +94,7 @@ class SignupForm extends Model
      */
     public function attributeLabels()
     {
-        return ArrayHelper::merge(Profile::attributeLabels(), [
+        return ArrayHelper::merge((new Profile)->attributeLabels(), [
             'responsible_pneumologist'          => Yii::t('frontend', 'Verantwoordelijke pneumoloog'),
             'username'                          => Yii::t('frontend', 'Gebruikersnaam'),
             'email'                             => Yii::t('frontend', 'E-mailadres'),
