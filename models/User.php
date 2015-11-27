@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
 use dektrium\user\models\User as BaseUser;
 use dektrium\user\helpers\Password;
 use dektrium\user\models\Token;
+use infoweb\user\models\Profile;
 
 /**
  * User ActiveRecord model.
@@ -49,22 +50,22 @@ use dektrium\user\models\Token;
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class User extends BaseUser
-{    
+{
     // Scope constants
     const SCOPE_BACKEND     = 'backend';
     const SCOPE_FRONTEND    = 'frontend';
     const SCOPE_BOTH        = 'both';
-    
+
     public function rules()
     {
         $rules = parent::rules();
-        
+
         // Update the 'usernameLength' rule
         $rules['usernameLength'] = ['username', 'string', 'min' => 3, 'max' => 255];
-        
-        return $rules;    
+
+        return $rules;
     }
-    
+
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
@@ -89,7 +90,7 @@ class User extends BaseUser
             'current_password' => \Yii::t('user', 'Current password'),
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -105,7 +106,7 @@ class User extends BaseUser
 
         return parent::beforeSave($insert);
     }
-    
+
     /**
      * Finds a token by user id and code.
      *
@@ -116,5 +117,15 @@ class User extends BaseUser
     public function getPasswordResetToken()
     {
         return $this->finder->tokenQuery->where(['user_id' => $this->id, 'type' => Token::TYPE_RECOVERY]);
+    }
+
+    /**
+     * Checks if the user's profession is 'nurse'
+     *
+     * @return boolean
+     */
+    public function isNurse()
+    {
+        return $this->profile->profession == Profile::PROFESSION_NURSE;
     }
 }
