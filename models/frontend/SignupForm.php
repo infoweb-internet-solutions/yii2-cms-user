@@ -34,7 +34,7 @@ class SignupForm extends Model
         return [
             [['name', 'firstname', 'email', 'username', 'password'], 'required'],
             [['name', 'firstname', 'email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'username'], 'trim'],
-            ['language', 'string', 'max' => 2],
+            ['language', 'string', 'max' => 10],
             ['language', 'default', 'value' => Yii::$app->language],
             // Username has to be unique
             ['username', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'message' => Yii::t('infoweb/user', 'This username has already been taken.')],
@@ -69,7 +69,7 @@ class SignupForm extends Model
             ]);
             
             if ($user->save()) {
-                
+
                 // Create the profile
                 $profile = new Profile([
                     'user_id'                       => $user->id,

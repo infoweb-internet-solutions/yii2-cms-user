@@ -40,7 +40,7 @@ class Profile extends BaseProfile
     {
         return [
             [['name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'fax'], 'trim'],
-            ['language', 'string', 'max' => 2],
+            ['language', 'string', 'max' => 10],
             ['language', 'default', 'value' => Yii::$app->language],
             ['public_email', 'email'],
             // Emailaddress has to be unique

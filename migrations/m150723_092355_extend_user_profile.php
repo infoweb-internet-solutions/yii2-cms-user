@@ -25,7 +25,7 @@ class m150723_092355_extend_user_profile extends Migration
         $this->addColumn('{{%profile}}', 'phone', Schema::TYPE_STRING.'(25) NOT NULL');
         $this->addColumn('{{%profile}}', 'mobile', Schema::TYPE_STRING.'(25) NOT NULL');
         $this->addColumn('{{%profile}}', 'fax', Schema::TYPE_STRING.'(25) NOT NULL');
-        $this->addColumn('{{%profile}}', 'language', Schema::TYPE_STRING.'(2) NOT NULL DEFAULT \'nl\'');
+        $this->addColumn('{{%profile}}', 'language', Schema::TYPE_STRING.'(10) NOT NULL');
         $this->addColumn('{{%profile}}', 'created_at', Schema::TYPE_INTEGER.' UNSIGNED NOT NULL');
         $this->addColumn('{{%profile}}', 'updated_at', Schema::TYPE_INTEGER.' UNSIGNED NOT NULL');   
     }
