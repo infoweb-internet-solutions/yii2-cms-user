@@ -188,7 +188,8 @@ class SignupForm extends Model
             'from'              => $this->email,
             'to'                => $this->to,
             'subject'           => $this->subject,
-            'message'           => $this->body
+            'message'           => $this->body,
+            'profession'        => Profile::professions()[$this->profession]
         ]);
 
         return $email->save();
