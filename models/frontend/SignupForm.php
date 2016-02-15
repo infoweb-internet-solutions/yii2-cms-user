@@ -8,6 +8,8 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 use infoweb\user\models\Profile;
 use infoweb\email\models\Email;
+use infoweb\member\models\Member;
+use infoweb\member\models\Rep;
 
 /**
  * Signup form
@@ -36,6 +38,7 @@ class SignupForm extends Model
     public $responsible_pneumologist;
     public $profession_declaration;
     public $ref;
+    public $repId;
 
     // Attributes for the mail that is send when the form is submitted
     public $body;
@@ -85,7 +88,8 @@ class SignupForm extends Model
             }],
             ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
             ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
-            ['ref', 'in', 'range' => ['sanmax', 'none']]
+            ['ref', 'in', 'range' => ['sanmax', 'none']],
+            ['repId', 'number']
         ];
     }
 
@@ -150,6 +154,14 @@ class SignupForm extends Model
                 ]);
 
                 if ($profile->save(false)) {
+
+                    // Attach the rep if provided
+                    $rep = Rep::findOne($this->repId);
+                    $member = Member::findOne($user->id);
+                    if ($member && $rep) {
+                        $member->link('reps', $rep);
+                    }
+
                     $transaction->commit();
                     return $user;
                 }
@@ -192,6 +204,11 @@ class SignupForm extends Model
             'profession'        => Profile::professions()[$this->profession]
         ]);
 
+        $rep = Rep::findOne($this->repId);
+        if ($rep) {
+            $email->rep = "{$rep->firstname} {$rep->name}";
+        }
+
         return $email->save();
     }
 
@@ -217,8 +234,15 @@ class SignupForm extends Model
                 'to'                => $this->email,
                 'subject'           => $subject,
                 'message'           => $body,
-                'action'            => Email::ACTION_SENT
+                'action'            => Email::ACTION_SENT,
+                'profession'        => Profile::professions()[$this->profession]
             ]);
+
+            $rep = Rep::findOne($this->repId);
+            if ($rep) {
+                $email->rep = "{$rep->firstname} {$rep->name}";
+            }
+
             $email->save();
         }
 

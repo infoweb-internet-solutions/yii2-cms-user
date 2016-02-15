@@ -24,6 +24,7 @@ SignupAsset::register($this);
 ]); ?>
 
     <?= $form->field($model, 'ref')->hiddenInput()->label(false) ?>
+    <?= $form->field($model, 'repId')->hiddenInput()->label(false) ?>
 
     <?php // User specific fields ?>
     <?= $form->field($model, 'salutation')->inline()->radioList([
