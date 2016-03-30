@@ -6,6 +6,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 use yii\db\ActiveRecord;
 use dektrium\user\models\Profile as BaseProfile;
+use infoweb\flexmail\behaviors\ContactBehavior;
 
 class Profile extends BaseProfile
 {
@@ -40,7 +41,16 @@ class Profile extends BaseProfile
             ['newsletter', 'number'],
             ['public_email', 'email'],
             // Emailaddress has to be unique
-            ['public_email', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'targetAttribute' => 'email', 'message' => Yii::t('infoweb/user', 'This email address has already been taken.')],
+            [
+                'public_email',
+                'unique',
+                'message' => Yii::t('infoweb/user', 'This email address has already been taken.'),
+                'filter' => function($query) {
+                    // Check if the emailadddress does not exist in the user table
+                    $query->joinWith('user')->where(['email' => $this->public_email]);
+                    return $query;
+                }
+            ],
             // Nurses and pneumologists must have a specific workplace_type
             ['workplace_type', 'in', 'range' => [Profile::WORKPLACETYPE_HOSPITAL, Profile::WORKPLACETYPE_PRIVATE], 'when' => function($model) {
                 return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
@@ -80,6 +90,32 @@ class Profile extends BaseProfile
             'image' => [
                 'class' => 'infoweb\cms\behaviors\ImageBehave',
             ],
+            'flexmailContact' => [
+                'class' => ContactBehavior::className(),
+                'mailingListId' => Yii::$app->params['flexmailMailingLists']['members'],
+                'contactAttributes' => [
+                    'emailAddress' => 'public_email',
+                    'name'         => 'firstname',
+                    'surname'      => 'name',
+                    'address'      => 'address',
+                    'zipcode'      => 'zipcode',
+                    'city'         => 'city',
+                    'phone'        => 'phone',
+                    'fax'          => 'fax',
+                    'mobile'       => 'mobile',
+                    'language'     => 'language',
+                    'title'        => 'salutation',
+                    'function'     => 'profession'
+                ],
+                'attributeFilters' => [
+                    'salutation' => function($value) {
+                        return (new self)->salutations()[$value];
+                    },
+                    'profession' => function($value) {
+                        return self::professions()[$value];
+                    }
+                ]
+            ]
         ]);
     }
 
@@ -133,5 +169,13 @@ class Profile extends BaseProfile
             self::SALUTATION_MR => Yii::t('frontend', 'Dhr.'),
             self::SALUTATION_MS => Yii::t('frontend', 'Mevr.')
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQueryInterface
+     */
+    public function getUser()
+    {
+        return $this->hasOne('\infoweb\user\models\User', ['id' => 'user_id']);
     }
 }

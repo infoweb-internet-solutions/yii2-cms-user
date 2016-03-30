@@ -107,6 +107,12 @@ class User extends BaseUser
         return parent::beforeSave($insert);
     }
 
+    public function beforeDelete()
+    {
+        $this->profile->delete();
+        return parent::beforeDelete();
+    }
+
     /**
      * Finds a token by user id and code.
      *
