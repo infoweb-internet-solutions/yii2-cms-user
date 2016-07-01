@@ -115,7 +115,18 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
         [
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{update} {delete}',
+            'template' => '{update} {delete} {login}',
+            'buttons' => [
+                'login' => function ($url, $model) {
+                    return Html::a('<span class="glyphicon glyphicon-user"></span>', $url, [
+                        'title' => Yii::t('app', 'Impersonate'),
+                        'data-pjax' => '0',
+                        'data-toggleable' => 'true',
+                        'data-toggle-id' => $model->id,
+                        'data-toggle' => 'tooltip',
+                    ]);
+                }
+            ],
         ],
     ],
 ]); ?>

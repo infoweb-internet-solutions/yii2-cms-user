@@ -171,4 +171,19 @@ class AdminController extends BaseAdminController
             'activeRoles' => $activeRoles,
         ]);
     }
+
+    /**
+     * Login as existing User.
+     * If login is successful, the browser will be redirected to the 'index' page.
+     * @param  integer $id
+     * @return mixed
+     */
+    public function actionLogin($id)
+    {
+        $rememberme = 0;
+        $user = $this->findModel($id);
+        Yii::$app->getUser()->login($user, $rememberme);
+
+        return $this->redirect(['/']);
+    }
 }
