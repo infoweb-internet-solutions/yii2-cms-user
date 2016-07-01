@@ -44,7 +44,16 @@ class Profile extends BaseProfile
             ['language', 'default', 'value' => Yii::$app->language],
             ['public_email', 'email'],
             // Emailaddress has to be unique
-            ['public_email', 'unique', 'targetClass' => 'infoweb\user\models\frontend\User', 'targetAttribute' => 'email', 'message' => Yii::t('infoweb/user', 'This email address has already been taken.')],
+            [
+                'public_email',
+                'unique',
+                'message' => Yii::t('infoweb/user', 'This email address has already been taken.'),
+                'filter' => function($query) {
+                    // Check if the emailadddress does not exist in the user table
+                    $query->joinWith('user')->where(['email' => $this->public_email]);
+                    return $query;
+                }
+            ],
         ];
     }
 
@@ -73,7 +82,7 @@ class Profile extends BaseProfile
         return ArrayHelper::merge(parent::attributeLabels(), [
             'public_email'                      => Yii::t('infoweb/user', 'Email'),
             'firstname'                         => Yii::t('infoweb/user', 'Firstname'),
-            'name'                              => Yii::t('infoweb/user', 'Name'),            
+            'name'                              => Yii::t('infoweb/user', 'Name'),
             'language'                          => Yii::t('infoweb/user', 'Language'),
             'address'                           => Yii::t('infoweb/user', 'Address'),
             'zipcode'                           => Yii::t('infoweb/user', 'Zipcode'),
@@ -83,7 +92,7 @@ class Profile extends BaseProfile
             'fax'                               => Yii::t('infoweb/user', 'Fax'),
         ]);
     }
-    
+
     /**
      * @return \yii\db\ActiveQueryInterface
      */
