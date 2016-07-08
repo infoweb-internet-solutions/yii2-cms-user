@@ -27,6 +27,9 @@ class Profile extends BaseProfile
     const PROFESSION_NURSE              = 'nurse';
     const PROFESSION_PHARMACIST         = 'pharmacist';
     const PROFESSION_PHYSIOTHERAPIST    = 'physiotherapist';
+    
+    const COUNTRY_LU = 'LU';
+    const COUNTRY_BE = 'BE';
 
     /**
      * @inheritdoc
@@ -38,6 +41,7 @@ class Profile extends BaseProfile
             [['name', 'firstname', 'public_email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'workplace_name', 'responsible_pneumologist'], 'trim'],
             ['language', 'string', 'max' => 2],
             ['language', 'default', 'value' => Yii::$app->language],
+            ['country', 'default', 'value' => Profile::COUNTRY_BE],
             ['newsletter', 'number'],
             ['public_email', 'email'],
             // Emailaddress has to be unique
@@ -69,7 +73,19 @@ class Profile extends BaseProfile
             }],
             // All the rest needs a riziv number
             ['riziv_number', 'required', 'when' => function($model) {
-                return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, Profile::PROFESSION_NURSE, '']);
+                if($model->country == Profile::COUNTRY_BE) {
+                    return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, Profile::PROFESSION_NURSE, '']);
+                }
+
+                return false;
+            }],
+            // 
+            ['doctorcode', 'required', 'when' => function($model) {
+                if($model->country == Profile::COUNTRY_LU) {
+                    return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, Profile::PROFESSION_NURSE, '']);
+                }
+
+                return false;
             }],
             ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
             ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
@@ -139,6 +155,19 @@ class Profile extends BaseProfile
     }
 
     /**
+     * Returns the countries
+     *
+     * @return  array
+     */
+    public static function countries()
+    {
+        return [
+            self::COUNTRY_BE => Yii::t('frontend', 'Belgique'),
+            self::COUNTRY_LU => Yii::t('frontend', 'Grand Duché du Luxembourg')
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function attributeLabels()
@@ -149,10 +178,12 @@ class Profile extends BaseProfile
             'firstname'                         => Yii::t('frontend', 'Voornaam'),
             'name'                              => Yii::t('frontend', 'Naam'),
             'profession'                        => Yii::t('frontend', 'Beroep'),
-            'riziv_number'                      => Yii::t('frontend', 'Riziv nummer'),
+            'riziv_number'                      => Yii::t('frontend', 'Riziv nummer'), // Enkel voor BE
+            'doctorcode'                        => Yii::t('frontend', 'Arts nummer'), // Enkel voor LU
             'apb_number'                        => Yii::t('frontend', 'APB nummer'),
             'workplace_name'                    => Yii::t('frontend', 'Werkplaats'),
             'language'                          => Yii::t('frontend', 'Taal'),
+            'country'                           => Yii::t('frontend', 'Land'),
             'address'                           => Yii::t('frontend', 'Adres'),
             'zipcode'                           => Yii::t('frontend', 'Postcode'),
             'city'                              => Yii::t('frontend', 'Gemeente'),

@@ -24,6 +24,7 @@ class SignupForm extends Model
     public $firstname;
     public $name;
     public $language;
+    public $country;
     public $profession;
     public $workplace_type;
     public $workplace_name;
@@ -33,6 +34,7 @@ class SignupForm extends Model
     public $phone;
     public $mobile;
     public $riziv_number;
+    public $doctorcode;
     public $apb_number;
     public $order_of_pharmacists_number;
     public $responsible_pneumologist;
@@ -51,7 +53,7 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['salutation', 'name', 'firstname', 'email', 'address', 'zipcode', 'city', 'profession', 'username', 'password', 'profession_declaration', 'language'], 'required'],
+            [['salutation', 'name', 'firstname', 'email', 'address', 'zipcode', 'city', 'profession', 'username', 'password', 'profession_declaration', 'language', 'country'], 'required'],
             [['name', 'firstname', 'email', 'address', 'zipcode', 'city', 'phone', 'mobile', 'username', 'workplace_name', 'responsible_pneumologist'], 'trim'],
             ['language', 'string', 'max' => 2],
             ['language', 'default', 'value' => Yii::$app->language],
@@ -84,7 +86,18 @@ class SignupForm extends Model
             }],
             // All the rest needs a riziv number
             ['riziv_number', 'required', 'when' => function($model) {
-                return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, Profile::PROFESSION_NURSE, '']);
+                if($model->country == Profile::COUNTRY_BE) {
+                    return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, Profile::PROFESSION_NURSE, '']);
+                }
+
+                return false;
+            }],
+            ['doctorcode', 'required', 'when' => function($model) {
+                if($model->country == Profile::COUNTRY_LU) {
+                    return !in_array($model->profession, [Profile::PROFESSION_PHARMACIST, Profile::PROFESSION_NURSE, '']);
+                }
+
+                return false;
             }],
             ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
             ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
@@ -150,7 +163,8 @@ class SignupForm extends Model
                     'riziv_number'                  => ($this->profession != Profile::PROFESSION_PHARMACIST) ? $this->riziv_number : '',
                     'apb_number'                    => ($this->profession == Profile::PROFESSION_PHARMACIST) ? $this->apb_number : '',
                     'responsible_pneumologist'      => ($this->profession == Profile::PROFESSION_NURSE) ? $this->responsible_pneumologist : '',
-                    'language'                      => $this->language
+                    'language'                      => $this->language,
+                    'country'                       => $this->country
                 ]);
 
                 if ($profile->save(false)) {

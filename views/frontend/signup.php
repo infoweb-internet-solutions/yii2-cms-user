@@ -62,6 +62,8 @@ SignupAsset::register($this);
 
     <?= $form->field($model, 'language')->dropDownList($languages)->label($model->getAttributeLabel('language').' *') ?>
 
+    <?= $form->field($model, 'country')->dropDownList($countries)->label($model->getAttributeLabel('country').' *') ?>
+
     <?= $form->field($model, 'profession', ['enableError' => false])->dropDownList($professions, [
         'prompt' => Yii::t('frontend', 'Kies je beroep')
     ])->label($model->getAttributeLabel('profession').' *') ?>
@@ -79,6 +81,14 @@ SignupAsset::register($this);
             <?= $form->field($model, 'workplace_name', ['enableError' => false])->label('&nbsp;')->textInput() ?>
         </div>
     </div>
+
+    <?= $form
+            ->field($model, 'doctorcode', ['enableError' => false])
+            ->textInput()
+            ->label($model->getAttributeLabel('doctorcode').' *')
+            ->hint(Yii::t('frontend', 'Structuur').': XX XXX XXX');
+    ?>
+
     <?= $form
             ->field($model, 'riziv_number', ['enableError' => false])
             ->textInput()
