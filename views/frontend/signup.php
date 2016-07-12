@@ -86,7 +86,7 @@ SignupAsset::register($this);
             ->field($model, 'doctorcode', ['enableError' => false])
             ->textInput()
             ->label($model->getAttributeLabel('doctorcode').' *')
-            ->hint(Yii::t('frontend', 'Structuur').': XX XXX XXX');
+            ->hint(Yii::t('frontend', 'Structuur').': XXXXXXXX');
     ?>
 
     <?= $form

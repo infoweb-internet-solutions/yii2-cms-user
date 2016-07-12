@@ -64,6 +64,8 @@ var SignupForm = (function() {
         else {
             $('#signupform-profession option').prop('disabled', false).show();
         }
+
+        $('#signupform-profession').trigger('change');
     };
 
     /**

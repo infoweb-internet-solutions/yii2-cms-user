@@ -168,6 +168,15 @@ class Profile extends BaseProfile
     }
 
     /**
+     * Returns translated country name
+     * 
+     * @return string
+     */
+    public function getCountry() {
+        return (isset(self::countries()[$this->country])) ? self::countries()[$this->country] : '';
+    }
+
+    /**
      * @inheritdoc
      */
     public function attributeLabels()
