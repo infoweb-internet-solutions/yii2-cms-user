@@ -161,12 +161,13 @@ class SignupForm extends Model
                     'workplace_type'                => (in_array($this->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE])) ? $this->workplace_type : '',
                     'workplace_name'                => (in_array($this->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE])) ? $this->workplace_name : '',
                     'riziv_number'                  => ($this->profession != Profile::PROFESSION_PHARMACIST) ? $this->riziv_number : '',
+                    'doctorcode'                    => ($this->country == Profile::COUNTRY_LU) ? $this->doctorcode : '',
                     'apb_number'                    => ($this->profession == Profile::PROFESSION_PHARMACIST) ? $this->apb_number : '',
                     'responsible_pneumologist'      => ($this->profession == Profile::PROFESSION_NURSE) ? $this->responsible_pneumologist : '',
                     'language'                      => $this->language,
                     'country'                       => $this->country
                 ]);
-
+                
                 if ($profile->save(false)) {
 
                     // Attach the rep if provided
