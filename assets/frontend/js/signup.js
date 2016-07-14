@@ -36,7 +36,10 @@ var SignupForm = (function() {
         // Trigger a change on the profession dropdown to make sure the correct
         // profession specific fields are shown when the page is loaded
         $('#signupform-profession').trigger('change');
-        
+
+        // Trigger change to update dropdown menu
+        $('#signupform-language').trigger('change');
+
         // Trigger a change on the country dropdown to make sure the correct
         // profession are shown when the page is loaded
         $('#signupform-country').trigger('change');
@@ -46,6 +49,7 @@ var SignupForm = (function() {
         $(document)
             .on('change', '#signupform-profession', SignupForm.toggleProfessionSpecificFields)
             .on('change', '#signupform-country', SignupForm.toggleProfessions)
+            .on('change', '#signupform-language', SignupForm.toggleCountry)
             .on('keyup', '#signupform-email', SignupForm.copyEmailToUsername);
     };
 
@@ -66,6 +70,15 @@ var SignupForm = (function() {
         }
 
         $('#signupform-profession').trigger('change');
+    };
+
+    SignupForm.toggleCountry = function(event) {
+        if($(this).val() == 'nl') {            
+            $('#signupform-country option[value="'+SignupForm.COUNTRY_LU+'"]').prop('disabled', true).hide();
+        }
+        else {            
+            $('#signupform-country option[value="'+SignupForm.COUNTRY_LU+'"]').prop('disabled', false).show();
+        }
     };
 
     /**
