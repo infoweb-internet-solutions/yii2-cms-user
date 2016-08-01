@@ -14,6 +14,11 @@ class Profile extends BaseProfile
     CONST LOGIN_TYPE_SITE = 'SITE';
     CONST LOGIN_TYPE_SSO = 'SSO';
 
+    // Registration sources
+    CONST REGISTRATION_SOURCE_SITE = 'SITE';
+    CONST REGISTRATION_SOURCE_SSO = 'SSO';
+    CONST REGISTRATION_SOURCE_SANMAX = 'SANMAX';
+
     // Salutation constants
     const SALUTATION_MR = 'mr';
     const SALUTATION_MS = 'ms';
@@ -93,6 +98,7 @@ class Profile extends BaseProfile
             }],
             ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
             ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
+            ['registration_source', 'string']
         ];
     }
 
@@ -137,6 +143,14 @@ class Profile extends BaseProfile
                 ]
             ]
         ]);
+    }
+
+    public static function registrationSources() {
+        return [
+            self::REGISTRATION_SOURCE_SITE => Yii::t('frontend', 'Site'),
+            self::REGISTRATION_SOURCE_SSO => Yii::t('frontend', 'SSO'),
+            self::REGISTRATION_SOURCE_SANMAX => Yii::t('frontend', 'Sanmax'),
+        ];
     }
 
     public static function loginTypes() {
@@ -211,6 +225,7 @@ class Profile extends BaseProfile
             'mobile'                            => Yii::t('frontend', 'GSM'),
             'responsible_pneumologist'          => Yii::t('frontend', 'Verantwoordelijke pneumoloog'),
             'workplace_type'                    => Yii::t('frontend', 'Werkplaats'),
+            'registration_source'               => Yii::t('frontend', 'Registratie bron'),
         ]);
     }
 

@@ -41,6 +41,8 @@ class SignupForm extends Model
     public $profession_declaration;
     public $ref;
     public $repId;
+    
+    public $registration_source;
 
     // Attributes for the mail that is send when the form is submitted
     public $body;
@@ -102,7 +104,8 @@ class SignupForm extends Model
             ['riziv_number', 'match', 'pattern' => '/^[0-9]{1}-[0-9]{5}-[0-9]{2}-[0-9]{3}$/'],
             ['apb_number', 'match', 'pattern' => '/^[0-9]{6}$/'],
             ['ref', 'in', 'range' => ['sanmax', 'none']],
-            ['repId', 'number']
+            ['repId', 'number'],
+            ['registration_source', 'string']
         ];
     }
 
@@ -165,7 +168,8 @@ class SignupForm extends Model
                     'apb_number'                    => ($this->profession == Profile::PROFESSION_PHARMACIST) ? $this->apb_number : '',
                     'responsible_pneumologist'      => ($this->profession == Profile::PROFESSION_NURSE) ? $this->responsible_pneumologist : '',
                     'language'                      => $this->language,
-                    'country'                       => $this->country
+                    'country'                       => $this->country,
+                    'registration_source'           => $this->registration_source
                 ]);
                 
                 if ($profile->save(false)) {
