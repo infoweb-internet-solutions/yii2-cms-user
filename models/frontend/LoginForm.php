@@ -4,6 +4,8 @@ namespace infoweb\user\models\frontend;
 use Yii;
 use yii\base\Model;
 
+use infoweb\user\models\Profile;
+
 /**
  * Login form
  */
@@ -14,7 +16,6 @@ class LoginForm extends Model
     public $rememberMe = true;
 
     private $_user = false;
-
 
     /**
      * @inheritdoc
@@ -30,7 +31,7 @@ class LoginForm extends Model
             ['password', 'validatePassword'],
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -65,10 +66,28 @@ class LoginForm extends Model
      *
      * @return boolean whether the user is logged in successfully
      */
-    public function login()
+    public function login($loginType = Profile::LOGIN_TYPE_SITE)
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            $user = $this->getUser();
+
+            // Log last login
+            $user->profile->last_login = time();
+
+            // Count login types
+            if(in_array($loginType, array_keys(Profile::loginTypes()))) {
+                if($loginType == Profile::LOGIN_TYPE_SITE) {
+                    $user->profile->count_login_site++;
+                }
+                else {
+                    $user->profile->count_login_sso++;
+                }
+            }
+
+            // Save changed data
+            $user->profile->save();
+
+            return Yii::$app->user->login($user, $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;
         }

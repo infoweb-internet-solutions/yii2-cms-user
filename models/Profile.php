@@ -10,6 +10,10 @@ use infoweb\flexmail\behaviors\ContactBehavior;
 
 class Profile extends BaseProfile
 {
+    // Login types
+    CONST LOGIN_TYPE_SITE = 'SITE';
+    CONST LOGIN_TYPE_SSO = 'SSO';
+
     // Salutation constants
     const SALUTATION_MR = 'mr';
     const SALUTATION_MS = 'ms';
@@ -27,7 +31,7 @@ class Profile extends BaseProfile
     const PROFESSION_NURSE              = 'nurse';
     const PROFESSION_PHARMACIST         = 'pharmacist';
     const PROFESSION_PHYSIOTHERAPIST    = 'physiotherapist';
-    
+
     const COUNTRY_LU = 'LU';
     const COUNTRY_BE = 'BE';
 
@@ -133,6 +137,13 @@ class Profile extends BaseProfile
                 ]
             ]
         ]);
+    }
+
+    public static function loginTypes() {
+        return [
+            self::LOGIN_TYPE_SITE => Yii::t('frontend', 'Site'),
+            self::LOGIN_TYPE_SSO => Yii::t('frontend', 'SSO')
+        ];
     }
 
     /**
