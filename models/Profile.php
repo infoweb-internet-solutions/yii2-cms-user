@@ -138,7 +138,7 @@ class Profile extends BaseProfile
                         return (new self)->salutations()[$value];
                     },
                     'profession' => function($value) {
-                        return self::professions()[$value];
+                        return isset(self::professions()[$value]) ? self::professions()[$value] : '';
                     }
                 ]
             ]

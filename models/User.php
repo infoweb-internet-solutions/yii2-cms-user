@@ -62,6 +62,7 @@ class User extends BaseUser
 
         // Update the 'usernameLength' rule
         $rules['usernameLength'] = ['username', 'string', 'min' => 3, 'max' => 255];
+        $rules['defaultSsoId'] = ['sso_id', 'default', 'value' => 0];
 
         return $rules;
     }

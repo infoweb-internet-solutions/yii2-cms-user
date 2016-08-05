@@ -41,7 +41,7 @@ class SignupForm extends Model
     public $profession_declaration;
     public $ref;
     public $repId;
-    
+
     public $registration_source;
 
     // Attributes for the mail that is send when the form is submitted

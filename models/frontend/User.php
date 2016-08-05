@@ -41,6 +41,28 @@ class User extends BaseUser
     {
         return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
+
+    /**
+     * Finds user by email
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email, 'scope' => [self::SCOPE_FRONTEND, self::SCOPE_BOTH]]);
+    }
+
+    /**
+     * Finds user by sso_id
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findBySsoId($sso_id)
+    {
+        return static::findOne(['sso_id' => $sso_id, 'scope' => [self::SCOPE_FRONTEND, self::SCOPE_BOTH]]);
+    }
     
     /**
      * Finds user by username
@@ -120,5 +142,5 @@ class User extends BaseUser
     {
         return $this->hasMany(AgendaItem::className(), ['id' => 'agenda_item_id'])
                     ->viaTable('user_agenda_registrations', ['user_id' => 'id']);
-    }   
+    }
 }
