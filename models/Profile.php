@@ -28,14 +28,15 @@ class Profile extends BaseProfile
     const WORKPLACETYPE_PRIVATE     = 'private';
 
     // Profession constants
-    const PROFESSION_PNEUMOLOGIST       = 'pneumologist';
-    const PROFESSION_ALLERGIST          = 'allergist';
-    const PROFESSION_NKO                = 'nko';
-    const PROFESSION_INTERNIST          = 'internist';
-    const PROFESSION_DOCTOR             = 'doctor';
-    const PROFESSION_NURSE              = 'nurse';
-    const PROFESSION_PHARMACIST         = 'pharmacist';
-    const PROFESSION_PHYSIOTHERAPIST    = 'physiotherapist';
+    const PROFESSION_PNEUMOLOGIST           = 'pneumologist';
+    const PROFESSION_PNEUMOLOGIST_ASSISTANT = 'pneumologist-assistent';
+    const PROFESSION_ALLERGIST              = 'allergist';
+    const PROFESSION_NKO                    = 'nko';
+    const PROFESSION_INTERNIST              = 'internist';
+    const PROFESSION_DOCTOR                 = 'doctor';
+    const PROFESSION_NURSE                  = 'nurse';
+    const PROFESSION_PHARMACIST             = 'pharmacist';
+    const PROFESSION_PHYSIOTHERAPIST        = 'physiotherapist';
 
     const COUNTRY_LU = 'LU';
     const COUNTRY_BE = 'BE';
@@ -66,15 +67,15 @@ class Profile extends BaseProfile
             ],
             // Nurses and pneumologists must have a specific workplace_type
             ['workplace_type', 'in', 'range' => [Profile::WORKPLACETYPE_HOSPITAL, Profile::WORKPLACETYPE_PRIVATE], 'when' => function($model) {
-                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
+                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_PNEUMOLOGIST_ASSISTANT, Profile::PROFESSION_NURSE]);
             }],
             // Nurses and pneumologists must have a workplace_name
             ['workplace_name', 'required', 'when' => function($model) {
-                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
+                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_PNEUMOLOGIST_ASSISTANT, Profile::PROFESSION_NURSE]);
             }],
             // A nurse must have a responsible pneumologist
             ['responsible_pneumologist', 'required', 'when' => function($model) {
-                return in_array($model->profession, [Profile::PROFESSION_NURSE]);
+                return in_array($model->profession, [Profile::PROFESSION_NURSE, Profile::PROFESSION_PNEUMOLOGIST_ASSISTANT]);
             }],
             // Pharmacists need an APB number
             ['apb_number', 'required', 'when' => function($model) {
@@ -168,14 +169,15 @@ class Profile extends BaseProfile
     public static function professions()
     {
         return [
-            self::PROFESSION_PNEUMOLOGIST       => Yii::t('frontend', 'Pneumoloog'),
-            self::PROFESSION_ALLERGIST          => Yii::t('frontend', 'Allergoloog'),
-            self::PROFESSION_NKO                => Yii::t('frontend', 'NKO'),
-            self::PROFESSION_INTERNIST          => Yii::t('frontend', 'Internist'),
-            self::PROFESSION_DOCTOR             => Yii::t('frontend', 'Huisarts'),
-            self::PROFESSION_NURSE              => Yii::t('frontend', 'Verpleegkundige'),
-            self::PROFESSION_PHYSIOTHERAPIST    => Yii::t('frontend', 'Kinesist'),
-            self::PROFESSION_PHARMACIST         => Yii::t('frontend', 'Apotheker')
+            self::PROFESSION_PNEUMOLOGIST           => Yii::t('frontend', 'Pneumoloog'),
+            self::PROFESSION_PNEUMOLOGIST_ASSISTANT => Yii::t('frontend', 'Assistent pneumoloog'),
+            self::PROFESSION_ALLERGIST              => Yii::t('frontend', 'Allergoloog'),
+            self::PROFESSION_NKO                    => Yii::t('frontend', 'NKO'),
+            self::PROFESSION_INTERNIST              => Yii::t('frontend', 'Internist'),
+            self::PROFESSION_DOCTOR                 => Yii::t('frontend', 'Huisarts'),
+            self::PROFESSION_NURSE                  => Yii::t('frontend', 'Verpleegkundige'),
+            self::PROFESSION_PHYSIOTHERAPIST        => Yii::t('frontend', 'Kinesist'),
+            self::PROFESSION_PHARMACIST             => Yii::t('frontend', 'Apotheker')
         ];
     }
 

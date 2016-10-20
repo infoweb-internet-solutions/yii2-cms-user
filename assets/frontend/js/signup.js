@@ -8,14 +8,15 @@ var SignupForm = (function() {
     var SignupForm = {};
 
     // Professions
-    SignupForm.PROFESSION_PNEUMOLOGIST      = 'pneumologist';
-    SignupForm.PROFESSION_ALLERGIST         = 'allergist';
-    SignupForm.PROFESSION_NKO               = 'nko';
-    SignupForm.PROFESSION_INTERNIST         = 'internist';
-    SignupForm.PROFESSION_DOCTOR            = 'doctor';
-    SignupForm.PROFESSION_NURSE             = 'nurse';
-    SignupForm.PROFESSION_PHARMACIST        = 'pharmacist';
-    SignupForm.PROFESSION_PHYSIOTHERAPIST   = 'physiotherapist';
+    SignupForm.PROFESSION_PNEUMOLOGIST              = 'pneumologist';
+    SignupForm.PROFESSION_PNEUMOLOGIST_ASSISTENT    = 'pneumologist-assistent';
+    SignupForm.PROFESSION_ALLERGIST                 = 'allergist';
+    SignupForm.PROFESSION_NKO                       = 'nko';
+    SignupForm.PROFESSION_INTERNIST                 = 'internist';
+    SignupForm.PROFESSION_DOCTOR                    = 'doctor';
+    SignupForm.PROFESSION_NURSE                     = 'nurse';
+    SignupForm.PROFESSION_PHARMACIST                = 'pharmacist';
+    SignupForm.PROFESSION_PHYSIOTHERAPIST           = 'physiotherapist';
 
     // Countries
     SignupForm.COUNTRY_BE = 'BE';
@@ -123,6 +124,7 @@ var SignupForm = (function() {
                 break;
 
             case SignupForm.PROFESSION_NURSE:
+            case SignupForm.PROFESSION_PNEUMOLOGIST_ASSISTENT:
                 $('.field-signupform-responsible_pneumologist').show();
                 $('.container-workplace-fields').show();
 

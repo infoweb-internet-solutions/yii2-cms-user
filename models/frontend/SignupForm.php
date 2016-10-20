@@ -72,15 +72,15 @@ class SignupForm extends Model
             ['password', 'compare', 'compareAttribute' => 'password_repeat'],
             // Nurses and pneumologists must have a specific workplace_type
             ['workplace_type', 'in', 'range' => [Profile::WORKPLACETYPE_HOSPITAL, Profile::WORKPLACETYPE_PRIVATE], 'when' => function($model) {
-                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
+                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_PNEUMOLOGIST_ASSISTANT, Profile::PROFESSION_NURSE]);
             }],
             // Nurses and pneumologists must have a workplace_name
             ['workplace_name', 'required', 'when' => function($model) {
-                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_NURSE]);
+                return in_array($model->profession, [Profile::PROFESSION_PNEUMOLOGIST, Profile::PROFESSION_PNEUMOLOGIST_ASSISTANT, Profile::PROFESSION_NURSE]);
             }],
             // A nurse must have a responsible pneumologist
             ['responsible_pneumologist', 'required', 'when' => function($model) {
-                return in_array($model->profession, [Profile::PROFESSION_NURSE]);
+                return in_array($model->profession, [Profile::PROFESSION_NURSE, Profile::PROFESSION_PNEUMOLOGIST_ASSISTANT]);
             }],
             // Pharmacists need an APB number
             ['apb_number', 'required', 'when' => function($model) {
